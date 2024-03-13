@@ -2,32 +2,272 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+.aspect-89{
+  aspect-ratio: 8/9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.w-100{
+	width: 30.5rem;
 }
-
+.h-100{
+	height: 30.5rem;
+}
+.h-150{
+	height: 35.5rem;
+}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.bodaynya{
+	background-color: #dddee1;
+
+}
+.min-h-90vh{
+	min-height: 90vh;
+}
+.max-h-90vh{
+	max-height: 90vh;
+}
+.min-h-80vh{
+	min-height: 75vh;
+}
+.w-90vw{
+	width: 90vw;
+}
+.w-70vw{
+	width: 70vw;
+}
+.max-w-80vw{
+	max-width: 75vw;
+}
+.max-w-60vw{
+	max-width: 60vw;
+}
+.actived{
+	color: black;
+	
+}
+.start-home{
+  color: black;
+}
+.wrapperMenu{
+	position: relative;
+	width: 590px;
+  
+	font-size: 0;
+}
+.wrapperMenu .menuActive{
+	font-size: 15px;
+	text-transform: uppercase;
+	text-decoration: none;
+	line-height: 60px;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	text-align: center;
+}
+.wrapperMenu .animationss{
+	position: absolute;
+	height: 3px;
+	bottom: 0;
+	z-index: 0;
+	background: #00000099;
+	border-radius: 8px;
+	transition: all .5s ease 0s;
+}
+.wrapperMenu .menuActive:nth-child(1){
+	width: 100px;
+
+
+}
+.wrapperMenu  .menuActive:nth-child(1):hover~.animationss{
+	width: 100px;
+	left: 0;
+}
+.wrapperMenu .menuActive:nth-child(2){
+	width: 110px;
+}
+.wrapperMenu .menuActive:nth-child(2):hover~.animationss{
+	width: 110px;
+
+	left: 100px;
+}
+.wrapperMenu .menuActive:nth-child(3){
+	width: 100px;
+}
+.wrapperMenu .menuActive:nth-child(3):hover~.animationss{
+	width: 100px;
+	left: 210px;
+}
+.wrapperMenu .menuActive:nth-child(4){
+	width: 160px;
+}
+.wrapperMenu .menuActive:nth-child(4):hover~.animationss{
+	width: 160px;
+	left: 310px;
+}
+.wrapperMenu .menuActive:nth-child(5){
+	width: 120px;
+}
+.wrapperMenu .menuActive:nth-child(5):hover~.animationss{
+	width: 120px;
+	left: 470px;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+
+@media screen and (min-width: 1300px) and (max-width: 1640px) {
+	.pad12{
+		padding-right: 100px;
+	}
+}
+@media screen and (min-width: 1200px) and (max-width: 1300px) {
+	.pad12{
+		padding-right: 150px;
+	}
+}
+@media screen and (min-width: 770px) and (max-width: 1200px) {
+	.flxLow{
+		flex-direction: column-reverse;
+	}
+	.matOp{
+		margin-top: 25px
+	}
+}
+
+@media screen and (max-width: 380px) {
+	.cardmini {
+		width: 14rem;
+		max-height: 10rem;
+	}
+	.cardBohay{
+		padding: 12px;
+	}
+	.inptOk{
+		margin-top: -7px;
+		height: 1.5rem;
+	}
+	.cardTulis{
+		font-size: .4rem;
+		margin-top: -6px;
+	}
+	.cardBtn {
+		height: 1.5rem/* 24px */;
+		min-height: 1.5rem/* 24px */;
+		padding-left: 0.5rem/* 8px */;
+		padding-right: 0.5rem/* 8px */;
+		font-size: 0.75rem/* 12px */;
+		margin-top: -12px;
+	}
+	.hidan{
+		display: none;
+	}
+}
+.maticon{
+	margin-top: 4.4px;
+}
+@media screen and (min-width: 380px) and (max-width: 500px) {
+	.cardmini {
+		width: 14rem;
+		max-height: 13rem;
+	}
+	.cardBohay{
+		padding: 1rem
+		;
+	}
+	.inptOk{
+		margin-top: -7px;
+		height: 2.25rem;
+	}
+	.cardTulis{
+		font-size: .4rem;
+		margin-top: -6px;
+	}
+	.cardBtn {
+		height: 1.5rem/* 24px */;
+		min-height: 1.5rem/* 24px */;
+		padding-left: 0.5rem/* 8px */;
+		padding-right: 0.5rem/* 8px */;
+		font-size: 0.75rem/* 12px */;
+		margin-top: -12px;
+	}
+	.hidan{
+		display: none;
+	}
+}
+@media screen and (min-width: 330px) and (max-width: 500px) {
+	.tinggiSesuai {
+		min-height: 16rem;
+		max-height: 16rem;
+	}
+	.textBerubah{
+		padding-left: 1.75rem;
+		padding-right: 1.75rem;
+		font-size: .75rem;
+		line-height: 1rem;
+	}
+	.ubahBtn {
+		height: 1.5rem;
+		min-height: 1.5rem;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+		font-size: 0.75rem;
+		font-size: 0.75rem/* 12px */;
+		line-height: 1rem
+	}
+	.tulisKecil{
+		line-height: 1rem;
+		font-size: .75rem;
+	}
+	.pecex2{
+		padding: 0 .5rem;
+	}
+}
+@media screen and (max-width: 330px) {
+	
+	.tinggiSesuai {
+		min-height: 13rem;
+		max-height: 13rem;
+	}
+	.textBerubah{
+		padding: 0 1.75rem;
+		font-size: .75rem;
+		line-height: 1rem;
+	}
+	.ubahBtn {
+		height: 1.5rem;
+		min-height: 1.5rem;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+		font-size: 0.75rem;
+		font-size: 0.75rem/* 12px */;
+		line-height: 1rem
+	}
+	.tulisKecil{
+		line-height: 1rem;
+		font-size: .75rem;
+	}
+	.pecex2{
+		padding: 0 .5rem;
+	}
+}
+@media screen and (min-width:381px) and (max-width: 500px) {
+	.cardmini {
+		width: 16rem;
+	}
+	
+}
+@media screen and (max-width: 440px) {
+	.max-w-440{
+		max-width: 20rem;
+	}
+}
+@media screen and (max-width: 380px) {
+	.max-w-440{
+		max-width: 16rem;
+	}
 }
