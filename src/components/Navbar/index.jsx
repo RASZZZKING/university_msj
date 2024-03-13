@@ -11,7 +11,8 @@ import {
 
 const Navbar = ({user, hasReg}) => {
   const sessionUser = user ? {title: "Logout" ,login: "/api/auth/signout"} : {title: "Login" ,login:"/Login"}
-  hasReg = hasReg ? {title: "Update Data" ,login: "/Users/dashboard"} : {title: "Register Form" ,login:"/Register"}
+  console.log(hasReg);
+  hasReg = hasReg && user ? {title: "Update Data" ,login: "/Users/dashboard"} : {title: "Register Form" ,login:"/Register"}
 
   return (
     <div className="w-full flex justify-center h-auto sticky z-30 shadow-xl bg-color-primary">

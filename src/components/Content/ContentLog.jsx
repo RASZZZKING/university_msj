@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
 
 
 const ContentLog = () => {
