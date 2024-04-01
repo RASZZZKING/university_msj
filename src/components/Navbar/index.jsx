@@ -67,15 +67,24 @@ const Navbar = ({user, hasReg}) => {
 
                 {/* close icon */}
               </label>
-            <ul
+              <ul
               tabIndex={0}
               className="dropdown-content  menu p-2 shadow bg-color-primary mr-3 mt-8 rounded-box w-52"
             >
               <li className="hover:bg-color-secondary hover:bg-opacity-20 rounded-xl">
-                <a>Item 1</a>
+                <Link href={"/"}>Home</Link>
               </li>
-              <li>
-                <a>Item 2</a>
+              <li className="hover:bg-color-secondary hover:bg-opacity-20 rounded-xl">
+                <Link href={"/about"}>About</Link>
+              </li>
+              <li className="hover:bg-color-secondary hover:bg-opacity-20 rounded-xl">
+                <Link href={sessionUser.login}>{sessionUser.title}</Link>
+              </li>
+              <li className="hover:bg-color-secondary hover:bg-opacity-20 rounded-xl">
+                <Link href={hasReg.login}>{hasReg.title}</Link>
+              </li>
+              <li className="hover:bg-color-secondary hover:bg-opacity-20 rounded-xl">
+                <Link href={"/about"}>Help</Link>
               </li>
             </ul>
           </div>
