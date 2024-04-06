@@ -21,6 +21,7 @@ import prisma from "@/models/libs/prisma";
 const Page = async() => {
   const user = await authUserSession()
   console.log(user);
+  console.log(user?.email);
   const data = await prisma.account.findFirst({
     where: { email: user?.email }
   })

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const NavbarWelcome = () => {
     return (
-      <Link href={"/"} className="absolute mt-10 cursor-pointer ms-20">
+      <Link href={"/"} className="absolute mt-10 cursor-pointer ms-20 max-sm:ms-10">
         <FontAwesomeIcon  icon={faArrowLeft} className="w-8 h-8 text-color-dark" />
       </Link>
     );

@@ -1,5 +1,11 @@
+import ConstentDashFull from "@/components/Content/ConstentDashFull";
 import ContentDash from "@/components/Content/ContentDash";
+import ContentDash2 from "@/components/Content/ContentDash2";
+import ContentDashFiles from "@/components/Content/ContentDashFiles";
+import ContentDashMobile from "@/components/Content/ContentDashMobile";
+import Navbar from "@/components/Navbar";
 import NavbarMobile from "@/components/utils/NavbarMobile";
+import NavbarSamping from "@/components/utils/NavbarSamping";
 import NavbarWelcome from "@/components/utils/NavbarWelcome";
 import authUserSession from "@/models/libs/auth-libs";
 import prisma from "@/models/libs/prisma";
@@ -25,11 +31,17 @@ const Page = async () => {
   }
   return (
     <>
-    <div className="min-h-svh max-h-svh bg-color-primary">
       {/* <Navbar2 historyInput={historyInput} /> */}
-      <NavbarWelcome />
-      <ContentDash dataUser={data} isFill={updateData} />
-    </div>
+      {/* <NavbarWelcome  /> */}
+      {/* <ContentDash2 dataUser={data} isFill={updateData} /> */}
+      <NavbarSamping />
+      {/* <ConstentDashFull /> */}
+      <ContentDashFiles />
+      <div className="hidden">
+      <ContentDashMobile />
+      </div>
+        
+      <NavbarMobile />
     </>
   );
 };

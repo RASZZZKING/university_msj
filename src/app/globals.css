@@ -2,7 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.hidden-scrollbar::-webkit-scrollbar{
+	display: none;
+}
+.hidden-scrollbar{
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+.mirror-h{
+	-moz-transform: scale(-1, 1);
+-webkit-transform: scale(-1, 1);
+-o-transform: scale(-1, 1);
+-ms-transform: scale(-1, 1);
+transform: scale(-1, 1);
+}
 .aspect-89{
   aspect-ratio: 8/9;
 }

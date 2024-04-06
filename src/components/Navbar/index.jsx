@@ -8,14 +8,18 @@ import {
   faMagnifyingGlass,
   faArrowRightLong,
 } from "@fortawesome/free-solid-svg-icons";
+import { usePathname } from "next/navigation";
 
 const Navbar = ({user, hasReg}) => {
   const sessionUser = user ? {title: "Logout" ,login: "/api/auth/signout"} : {title: "Login" ,login:"/Login"}
-  console.log(hasReg);
   hasReg = hasReg && user ? {title: "Update Data" ,login: "/Users/dashboard"} : {title: "Register Form" ,login:"/Register"}
 
+
+  const path = usePathname()
+  const custom = path === "/Users/dashboard2"  || path === "/Users/payment"
+
   return (
-    <div className="w-full flex justify-center h-auto sticky z-30 shadow-xl bg-color-primary">
+    <div className={`w-full flex justify-center h-auto z-30 shadow-md bg-color-primary ${custom && "fixed"}`}>
       <div className="navbar w-11/12 justify-between">
         <Link href={`/`} className="flex-1 ">
           <Image
@@ -30,21 +34,21 @@ const Navbar = ({user, hasReg}) => {
           <div className="md:flex hidden mr-20 text-2xl font-bold">
             <div className="wrapperMenu">
               <Link
-                className="menuActive hover:text-color-dark  actived"
-                href="#"
+                className={`menuActive hover:text-color-dark ${ path === "/" && "actived"}`}
+                href="/"
               >
                 Home
               </Link>
-              <Link className="menuActive hover:text-color-dark  " href="#">
+              <Link className={`menuActive hover:text-color-dark ${ path === "/About" && "actived"}`} href="#">
                 About
               </Link>
-              <Link className="menuActive hover:text-color-dark " href={sessionUser.login}>
+              <Link className={`menuActive hover:text-color-dark ${ path === "/Login" && "actived"}`} href={sessionUser.login}>
                 {sessionUser.title}
               </Link>
-              <Link className="menuActive hover:text-color-dark " href={hasReg.login}>
+              <Link className={`menuActive hover:text-color-dark ${ path === "/Register" && "actived"}`} href={hasReg.login}>
                 {hasReg.title}
               </Link>
-              <Link className="menuActive hover:text-color-dark " href="#">
+              <Link className={`menuActive hover:text-color-dark ${ path === "/Help" && "actived"}`} href="#">
                 Help
               </Link>
               <div className="animationss start-home"></div>

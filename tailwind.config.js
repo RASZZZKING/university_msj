@@ -18,6 +18,7 @@ module.exports = {
         primary: "#FFFFFF",
         accent: "#ffc639",
         secondary: "#393e46",
+        placeholder: "#C7C8CC",
         dark: "#222831",
         birulaut: "#063465",
         putihbg: "#dddee1",
