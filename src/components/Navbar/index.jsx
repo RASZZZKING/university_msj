@@ -39,8 +39,8 @@ const Navbar = ({user, hasReg}) => {
               >
                 Home
               </Link>
-              <Link className={`menuActive hover:text-color-dark ${ path === "/About" && "actived"}`} href="#">
-                About
+              <Link className={`menuActive hover:text-color-dark ${ path === "/News" && "actived"}`} href="/News">
+                News
               </Link>
               <Link className={`menuActive hover:text-color-dark ${ path === "/Login" && "actived"}`} href={sessionUser.login}>
                 {sessionUser.title}
@@ -48,7 +48,7 @@ const Navbar = ({user, hasReg}) => {
               <Link className={`menuActive hover:text-color-dark ${ path === "/Register" && "actived"}`} href={hasReg.login}>
                 {hasReg.title}
               </Link>
-              <Link className={`menuActive hover:text-color-dark ${ path === "/Help" && "actived"}`} href="#">
+              <Link className={`menuActive hover:text-color-dark ${ path === "/Help" && "actived"}`} href="/Help">
                 Help
               </Link>
               <div className="animationss start-home"></div>

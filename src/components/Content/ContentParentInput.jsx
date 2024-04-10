@@ -1,206 +1,339 @@
 "use client";
-import { Pencil, PencilRuler } from "@phosphor-icons/react";
-import { Pen, Printer } from "@phosphor-icons/react/dist/ssr";
+import { Printer, UserCircleGear } from "@phosphor-icons/react";
 import React, { useState } from "react";
 import InfoDaftarSuccess from "../utils/InfoDaftarSuccess";
 
-const ConstentDashFull = () => {
+const ContentParetnsInput = () => {
   const [formData, setFormData] = useState({
-    no_pendaftaran: "PPDB2020003",
-    nisn: "",
-    nik: "",
-    no_kk: "",
-    nama_lengkap: "",
-    tempat: "",
-    email: "",
-    tanggal_lahir: "",
-    no_hp: "",
-    asal_sekolah: "",
-    urutan_anak: "",
-    jumlah_saudara: "",
-    tinggi_badan: "",
-    berat_badan: "",
-    status_dalam_keluarga: "",
-    kip: "",
-    ukuran_baju: "",
+    nik_ayah: "",
+    nama_ayah: "",
+    tempat_lahir_ayah: "",
+    tanggal_lahir_ayah: "",
+    pendidikan_ayah: "",
+    pekerjaan_ayah: "",
+    penghasilan_ayah: "",
+    no_hp_ayah: "",
+    nik_ibu: "",
+    nama_ibu: "",
+    tempat_lahir_ibu: "",
+    tanggal_lahir_ibu: "",
+    pendidikan_ibu: "",
+    pekerjaan_ibu: "",
+    penghasilan_ibu: "",
+    no_hp_ibu: "",
+    nik_wali: "",
+    nama_wali: "",
+    tempat_lahir_wali: "",
+    tanggal_lahir_wali: "",
+    pendidikan_wali: "",
+    pekerjaan_wali: "",
+    penghasilan_wali: "",
+    no_hp_wali: "",
   });
 
-  const dataInputDaftar = [
-    {
-      type: "text",
-      title: "Nomor Pendaftaran",
-      name: "no_pendaftaran",
-      placeholder: "nodftar",
-      value: formData.no_pendaftaran,
-      disabled: true,
-    },
-    {
-      type: "text",
-      title: "Nama Lengkap",
-      name: "nama_lengkap",
-      placeholder: "Nama lengkap",
-      value: formData.nama_lengkap,
-    },
+  const dataAyah = [
     {
       type: "number",
-      title: "No Handphone",
-      placeholder: "contoh: +621149902234",
-      name: "no_hp",
-      value: formData.no_hp,
+      title: "NIK Ayah",
+      name: "nik_ayah",
+      placeholder: "nomor nik ayah",
+      value: formData.nik_ayah,
     },
     {
       type: "text",
-      title: "Asal Sekolah",
-      name: "asal_sekolah",
-      placeholder: "Asal sekolah",
-      value: formData.asal_sekolah,
+      title: "Nama Ayah",
+      name: "nama_ayah",
+      placeholder: "Nama lengkap ayah",
+      value: formData.nama_ayah,
     },
     {
       type: "text",
-      title: "Tanah Kelahiran",
-      name: "tempat",
-      placeholder: "Kabupaten/kota",
-      value: formData.tempat,
-      doubled: true,
-      type2: "date",
-      title2: "Tanggal Lahir",
-      name2: "tanggal_lahir",
-      placeholder2: "",
-      value2: formData.tanggal_lahir,
+      title: "Tempat Lahir",
+      name: "tempat_lahir_ayah",
+      placeholder: "Kabupaten / kota",
+      value: formData.tempat_lahir_ayah,
     },
-    {
-      type: "number",
-      title: "NISN",
-      name: "nisn",
-      placeholder: "NISN",
-      value: formData.nisn,
-    },
-    {
-      type: "number",
-      title: "NIK",
-      name: "nik",
-      placeholder: "NIK",
-      value: formData.nik,
-    },
-    {
-      type: "number",
-      title: "Anak Ke",
-      name: "urutan_anak",
-      placeholder: "Anak ke",
-      value: formData.urutan_anak,
-      doubled: true,
-      type2: "number",
-      title2: "Jumlah Saudara",
-      name2: "jumlah_saudara",
-      placeholder2: "Jumlah saudara",
-      value2: formData.jumlah_saudara,
-    },
-
-    {
-      type: "number",
-      title: "Nomor Kartu Keluarga",
-      name: "no_kk",
-      placeholder: "Nomor kartu keluarga",
-      value: formData.no_kk,
-    },
-
     {
       type: "date",
       title: "Tanggal Lahir",
-      name: "tanggal_lahir",
-      placeholder: "",
-      value: formData.tanggal_lahir,
-      hasDouble: true,
+      name: "tanggal_lahir_ayah",
+      value: formData.tanggal_lahir_ayah,
+    },
+    {
+      type: "select",
+      title: "Pendidikan",
+      placeholder: "pilih pendidikan terakhir ayah",
+      name: "pendidikan_ayah",
+      value: formData.pendidikan_ayah,
+      option: [
+        "Tidak_Sekolah",
+        "SD",
+        "SMP_Sederajat",
+        "SMA_Sederajat",
+        "D1",
+        "D2",
+        "D3,",
+        "S1",
+        "S2",
+        "S3",
+        "Rektor",
+        "Magister",
+      ],
+    },
+    {
+      type: "select",
+      title: "Pekerjaan",
+      placeholder: "pekerjaan ayah",
+      name: "pekerjaan_ayah",
+      value: formData.pekerjaan_ayah,
+      option: [
+        "Tidak_Bekerja",
+        "Freelancer",
+        "Serabutan",
+        "Guru",
+        "Karyawan",
+        "Karyawan_Swasta",
+        "Pengusaha",
+        "PNS",
+        "Dosen",
+        "Buruh",
+      ],
+    },
+    {
+      type: "select",
+      title: "Pekerjaan",
+      placeholder: "pilih penghasilan ayah",
+      name: "penghasilan_ayah",
+      value: formData.penghasilan_ayah,
+      option: [
+        "<_rp._1jt",
+        "rp._1jt_s/d_rp._2jt",
+        "rp._3jt_s/d_rp._5jt",
+        "rp._5jt_s/d_rp._10jt",
+        "rp._10jt_s/d_rp._20jt",
+        "rp._20jt_s/d_rp._50jt",
+        ">_rp._50jt",
+      ],
+    },
+    {
+      type: "number",
+      title: "Nomor Telepon Ayah",
+      name: "no_hp_ayah",
+      placeholder: "nomor telepon: +62xxxx",
+      value: formData.no_hp_ayah,
     },
 
+  ];
+  const dataIbu = [
     {
       type: "number",
-      title: "Jumlah Saudara",
-      name: "jumlah_saudara",
-      placeholder: "Jumlah saudara",
-      value: formData.jumlah_saudara,
-      hasDouble: true,
-    },
-    {
-      type: "number",
-      title: "Berat Badan",
-      name: "berat_badan",
-      placeholder: "...Kg",
-      value: formData.berat_badan,
-      hasDouble: true,
+      title: "NIK Ibu",
+      name: "nik_ibu",
+      placeholder: "nomor nik ibu",
+      value: formData.nik_ibu,
     },
     {
       type: "text",
-      title: "Status Dalam Keluarga",
-      name: "status_dalam_keluarga",
-      placeholder: "Status",
-      value: formData.status_dalam_keluarga,
+      title: "Nama Ibu",
+      name: "nama_ibu",
+      placeholder: "Nama lengkap ibu",
+      value: formData.nama_ibu,
+    },
+    {
+      type: "text",
+      title: "Tempat Lahir",
+      name: "tempat_lahir_ibu",
+      placeholder: "Kabupaten / kota",
+      value: formData.tempat_lahir_ibu,
+    },
+    {
+      type: "date",
+      title: "Tanggal Lahir",
+      name: "tanggal_lahir_ibu",
+      value: formData.tanggal_lahir_ibu,
+    },
+    {
+      type: "select",
+      title: "Pendidikan",
+      placeholder: "pilih pendidikan terakhir ibu",
+      name: "pendidikan_ibu",
+      value: formData.pendidikan_ibu,
+      option: [
+        "Tidak_Sekolah",
+        "SD",
+        "SMP_Sederajat",
+        "SMA_Sederajat",
+        "D1",
+        "D2",
+        "D3,",
+        "S1",
+        "S2",
+        "S3",
+        "Rektor",
+        "Magister",
+      ],
+    },
+    {
+      type: "select",
+      title: "Pekerjaan",
+      placeholder: "pekerjaan ibu",
+      name: "pekerjaan_ibu",
+      value: formData.pekerjaan_ibu,
+      option: [
+        "Tidak_Bekerja",
+        "Freelancer",
+        "Serabutan",
+        "Guru",
+        "Karyawan",
+        "Karyawan_Swasta",
+        "Pengusaha",
+        "PNS",
+        "Dosen",
+        "Buruh",
+      ],
+    },
+    {
+      type: "select",
+      title: "Pekerjaan",
+      placeholder: "pilih penghasilan ibu",
+      name: "penghasilan_ibu",
+      value: formData.penghasilan_ibu,
+      option: [
+        "<_rp._1jt",
+        "rp._1jt_s/d_rp._2jt",
+        "rp._3jt_s/d_rp._5jt",
+        "rp._5jt_s/d_rp._10jt",
+        "rp._10jt_s/d_rp._20jt",
+        "rp._20jt_s/d_rp._50jt",
+        ">_rp._50jt",
+      ],
     },
     {
       type: "number",
-      title: "Tinggi Badan",
-      name: "tinggi_badan",
-      placeholder: "...cm",
-      value: formData.tinggi_badan,
-      tripled: true,
-      type2: "number",
-      title2: "Berat Badan",
-      name2: "berat_badan",
-      placeholder2: "...Kg",
-      value2: formData.berat_badan,
-      type3: "text",
-      title3: "Ukuran Baju",
-      name3: "ukuran_baju",
-      placeholder3: "S/M/L/XL/XXL",
-      value3: formData.ukuran_baju,
+      title: "Nomor Telepon Ibu",
+      name: "no_hp_ibu",
+      placeholder: "nomor telepon: +62xxxx",
+      value: formData.no_hp_ibu,
+    },
+  ];
+  const dataWali = [
+    {
+      type: "number",
+      title: "NIK Wali",
+      name: "nik_wali",
+      placeholder: "nomor nik wali",
+      value: formData.nik_wali,
+    },
+    {
+      type: "text",
+      title: "Nama Wali",
+      name: "nama_wali",
+      placeholder: "Nama lengkap wali",
+      value: formData.nama_wali,
+    },
+    {
+      type: "text",
+      title: "Tempat Lahir",
+      name: "tempat_lahir_wali",
+      placeholder: "Kabupaten / kota",
+      value: formData.tempat_lahir_wali,
+    },
+    {
+      type: "date",
+      title: "Tanggal Lahir",
+      name: "tanggal_lahir_wali",
+      value: formData.tanggal_lahir_wali,
+    },
+    {
+      type: "select",
+      title: "Pendidikan",
+      placeholder: "pilih pendidikan terakhir ayah",
+      name: "pendidikan_ayah",
+      value: formData.pendidikan_ayah,
+      option: [
+        "Tidak_Sekolah",
+        "SD",
+        "SMP_Sederajat",
+        "SMA_Sederajat",
+        "D1",
+        "D2",
+        "D3,",
+        "S1",
+        "S2",
+        "S3",
+        "Rektor",
+        "Magister",
+      ],
+    },
+    {
+      type: "select",
+      title: "Pekerjaan",
+      placeholder: "pekerjaan wali",
+      name: "pekerjaan_wali",
+      value: formData.pekerjaan_wali,
+      option: [
+        "Tidak_Bekerja",
+        "Freelancer",
+        "Serabutan",
+        "Guru",
+        "Karyawan",
+        "Karyawan_Swasta",
+        "Pengusaha",
+        "PNS",
+        "Dosen",
+        "Buruh",
+      ],
+    },
+    {
+      type: "select",
+      title: "Pekerjaan",
+      placeholder: "pilih penghasilan wali",
+      name: "penghasilan_wali",
+      value: formData.penghasilan_wali,
+      option: [
+        "<_rp._1jt",
+        "rp._1jt_s/d_rp._2jt",
+        "rp._3jt_s/d_rp._5jt",
+        "rp._5jt_s/d_rp._10jt",
+        "rp._10jt_s/d_rp._20jt",
+        "rp._20jt_s/d_rp._50jt",
+        ">_rp._50jt",
+      ],
     },
     {
       type: "number",
-      title: "No KIP",
-      name: "no_kip",
-      placeholder: "Kosongkan kalau tidak ada",
-      value: formData.no_kip,
+      title: "Nomor Telepon Wali",
+      name: "no_hp_wali",
+      placeholder: "nomor telepon: +62xxxx",
+      value: formData.no_hp_wali,
     },
   ];
 
   return (
     <>
       <div className=" bg-color-primary flex sm:w-full lg:ps-[14.65rem]  justify-center  py-6 sm:pt-10 lg:min-h-screen   max-lg:overflow-auto hidden-scrollbar ">
-        <div className="flex flex-col items-center max-lg:justify-center max-lg:pb-20 px-6 sm:px-9 lg:px-12 ">
+        <div className="flex flex-col  w-full sm:max-lg:w-3/4 items-center max-lg:justify-center max-lg:pb-20 px-6 sm:px-9 lg:px-12 ">
           {/* Header text start  */}
           <div className="flex items-center ">
             <div className="text-center text-color-dark">
               <h1 className="text-2xl lg:text-3xl font-semibold drop-shadow-2xl">
-                Lengkapi Data Diri!
+                Tolong dilengkapi ya abi dan umi!
               </h1>
               <p className="pb-6 pt-3 text-sm max-w-sm max-w-440 text-center ">
-                Pastikan anda memasukan data pribadi dengan benar, besar kecil
-                huruf nama sesuai Kartu Keluarga!
+                Pastikan anda memasukan data pribadi dengan benar, Masukan data dengan
+                sebenar benarnya!
               </p>
             </div>
           </div>
           {/* Header text end */}
           <InfoDaftarSuccess />
-            {/* Input data end */}
           {/* Input data start  */}
-          <div className="w-full flex justify-center mb-4">
-            <label className="flex flex-col justify-center items-center gap-1">
-              <span className="label-text text-nowrap whitespace-nowrap text-color-dark font-semibold text-base">
-                Foto Siswa
-              </span>
-              <div className="w-28 h-28 rounded-full bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder input input-bordered flex items-end justify-end text-color-secondary">
-                <Pencil size={32} className="-mr-4" />
-              </div>
-            </label>
-            <input
-              type="file"
-              name="foto"
-              className="absolute bg-color-birulaut h-28 w-28 rounded-full mt-7 opacity-0 cursor-pointer"
-              required
-            />
+          <div className="flex my-4 flex-row items-center w-full text-color-dark gap-3">
+            <UserCircleGear size={26} />
+            <p className="font-bold text-lg">Data Ayah </p>
           </div>
-          <div className="flex-col flex lg:grid lg:grid-cols-3  gap-4 gap-x-6">
-            {dataInputDaftar.map((cb, index) => (
+          <div className="flex-col flex w-full  lg:grid lg:grid-cols-3  gap-4 gap-x-6">
+            {dataAyah.map((cb, index) => (
               <InputFormUser
                 key={index}
                 setFormData={setFormData}
@@ -209,6 +342,35 @@ const ConstentDashFull = () => {
               />
             ))}
           </div>
+          <div className="flex mt-6 my-4 flex-row items-center w-full text-color-dark gap-3">
+            <UserCircleGear size={26} />
+            <p className="font-bold text-lg">Data Ibu </p>
+          </div>
+          <div className="flex-col flex w-full lg:grid lg:grid-cols-3  gap-4 gap-x-6">
+            {dataIbu.map((cb, index) => (
+              <InputFormUser
+                key={index}
+                setFormData={setFormData}
+                formData={formData}
+                cb={cb}
+              />
+            ))}
+          </div>
+          <div className="flex mt-6 my-4 flex-row items-center w-full text-color-dark gap-3">
+            <UserCircleGear size={26} />
+            <p className="font-bold text-lg">Data Wali </p>
+          </div>
+          <div className="flex-col flex w-full lg:grid lg:grid-cols-3  gap-4 gap-x-6">
+            {dataWali.map((cb, index) => (
+              <InputFormUser
+                key={index}
+                setFormData={setFormData}
+                formData={formData}
+                cb={cb}
+              />
+            ))}
+          </div>
+
           <div className="w-full mt-5 gap-3  flex justify-end">
             <button className="btn bg-color-primary text-color-birulaut border-color-birulaut hover:bg-color-birulaut hover:text-color-primary  shadow-md w-24 sm:h-10  h-5">
               Sebelumnya
@@ -224,7 +386,7 @@ const ConstentDashFull = () => {
   );
 };
 
-export default ConstentDashFull;
+export default ContentParetnsInput;
 
 export const InputFormUser = ({ cb, setFormData, formData }) => {
   const handleChange = (e) => {
@@ -246,14 +408,20 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
             onChange={handleChange}
             name={cb.name}
             //   ref={input1}
-            className="select select-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2"
+            className={`select ${cb.value !== "" && "capitalize"} select-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2`}
             required
           >
             <option value="" disabled>
-              Jenis pendaftaran
+              {cb.placeholder}
             </option>
-            <option value="siswa_baru">Siswa baru</option>
-            <option value="pindahan">Pindahan</option>
+            {cb.option.map((sb, indax) => {
+              const usetitle = sb.split("_").join(" ");
+              return (
+                <option value={sb} key={indax} className="capitalize">
+                  {usetitle}
+                </option>
+              );
+            })}
           </select>
         </div>
       ) : cb.type !== "textarea" ? (
@@ -378,7 +546,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
           </div>
         )
       ) : (
-        <div className="w-full sm:col-span-2">
+        <div className="w-full sm:col-span-3">
           <span className="label-text text-nowrap whitespace-nowrap text-color-dark font-semibold w-full text-base">
             {cb.title}
           </span>

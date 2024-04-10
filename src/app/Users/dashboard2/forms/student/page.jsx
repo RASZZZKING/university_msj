@@ -31,19 +31,16 @@ const Page = async () => {
   // }
   return (
     <>
-      {/* <Navbar2 historyInput={historyInput} /> */}
-      {/* <NavbarWelcome  /> */}
-      {/* <ContentDash2 dataUser={data} isFill={updateData} /> */}
       <NavbarSamping />
       <ConstentDashFull />
       {/* <ContentDashFiles /> */}
       <div className="hidden">
       <ContentDashMobile />
       </div>
-        
       <NavbarMobile />
     </>
   );
 };
 
 export default Page;
+

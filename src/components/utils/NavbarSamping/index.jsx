@@ -16,6 +16,9 @@ import React from "react";
 
 const NavbarSamping = () => {
   const path = usePathname();
+  const trimPath = path.split("/")
+  const isPayment = trimPath[2] === "payment"
+  const isForm = trimPath[3] === "forms"
 
   const dataIcon = [
     {
@@ -24,27 +27,27 @@ const NavbarSamping = () => {
       icon: <House size={26} weight={path === "/" ? "fill" : "regular"} />,
     },
     {
-      href: "/details/123",
+      href: "/Users/payment",
       name: "Pembayaran",
       icon: (
         <CreditCard
           size={26}
-          weight={path === "/Users/payment" ? "fill" : "regular"}
+          weight={isPayment ? "fill" : "regular"}
         />
       ),
     },
     {
-      href: "/Users/dashboard",
+      href: "/Users/dashboard2/forms",
       name: "Formulir",
       icon: (
         <IdentificationBadge
           size={26}
-          weight={path === "/Users/dashboard2" ? "fill" : "regular"}
+          weight={isForm ? "fill" : "regular"}
         />
       ),
     },
     {
-      href: "/user",
+      href: "/News",
       name: "Pengumuman",
       icon: (
         <Megaphone
@@ -62,9 +65,33 @@ const NavbarSamping = () => {
       />,
     },
   ];
+  const iconIptData2 = {
+    data:[
+      {
+        logo: <Student size={26} weight={path === "/Users/dashboard2/forms/student" ? "fill" : "regular"}   />,
+        name: "Data Diri",
+        href: "/Users/dashboard2/forms/student",
+      },
+      {
+        logo: <MapPinArea size={26} weight={path === "/Users/dashboard2/forms/location" ? "fill" : "regular"} />,
+        name: "Data Alamat",
+        href: "/Users/dashboard2/forms/location",
+      },
+      {
+        logo: <Users size={26} weight={path === "/Users/dashboard2/forms/parents" ? "fill" : "regular"} />,
+        name: "Orang Tua",
+        href: "/Users/dashboard2/forms/parents",
+      },
+      {
+        logo: <Files size={26} weight={path === "/Users/dashboard2/forms/document" ? "fill" : "regular"} />,
+        name: "Dokumen",
+        href: "/Users/dashboard2/forms/document",
+      },
+    ]
+  }
   return (
     <div className=" fixed left-0 z-40 h-full min-w-24 shadow-xl bg-color-primary max-lg:hidden">
-      <div className="h-12 px-6 mt-12 mb-6">
+      <div className="h-12 px-6 mt-12 mb-3">
         <div className="w-full h-full bg-color-placeholder rounded">
           
         </div>
@@ -84,27 +111,20 @@ const NavbarSamping = () => {
             );
           } else {
             return (
-              <div className="flex flex-col " key={index}>
-                <div className="min-w-32 h-12 bg-color-primary hover:bg-color-putihbg flex  justify-start items-center gap-2 text-color-dark font-extralight px-12">
+              <div  className="flex flex-col " key={index}>
+                <Link href={cb.href} className="min-w-32 h-12 bg-color-primary hover:bg-color-putihbg flex  justify-start items-center gap-2 text-color-dark font-extralight px-12">
                   {cb.icon}
                   <p className="text-base">{cb.name}</p>
-                </div>
-                <div className="min-w-32 h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light px-12 ps-[4.25rem]">
-                  <Student size={26} weight={"fill"} />
-                  <p className="text-base">Data Diri</p>
-                </div>
-                <div className="min-w-32 h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light px-12 ps-[4.25rem]">
-                  <MapPinArea size={26} />
-                  <p className="text-base">Data Alamat</p>
-                </div>
-                <div className="min-w-32 h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light px-12 ps-[4.25rem]">
-                  <Users size={26} />
-                  <p className="text-base">Orang Tua</p>
-                </div>
-                <div className="min-w-32 h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light px-12 ps-[4.25rem]">
-                  <Files size={26} />
-                  <p className="text-base">Dokumen</p>
-                </div>
+                </Link>
+                {
+                  iconIptData2.data.map((cb,index)=>(
+                <Link key={index} href={cb.href} className="min-w-32 h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light px-12 ps-[4.25rem]">
+                  {cb.logo}
+                  <p className="text-base">{cb.name}</p>
+                </Link>
+
+                  ))
+                }
               </div>
             );
           }
@@ -115,3 +135,5 @@ const NavbarSamping = () => {
 };
 
 export default NavbarSamping;
+
+

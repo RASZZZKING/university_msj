@@ -1,165 +1,101 @@
 "use client";
-import { Pencil, PencilRuler } from "@phosphor-icons/react";
-import { Pen, Printer } from "@phosphor-icons/react/dist/ssr";
+import { Printer } from "@phosphor-icons/react";
 import React, { useState } from "react";
 import InfoDaftarSuccess from "../utils/InfoDaftarSuccess";
 
-const ConstentDashFull = () => {
+const ContentDashMLocation = () => {
   const [formData, setFormData] = useState({
-    no_pendaftaran: "PPDB2020003",
-    nisn: "",
-    nik: "",
-    no_kk: "",
-    nama_lengkap: "",
-    tempat: "",
-    email: "",
-    tanggal_lahir: "",
-    no_hp: "",
-    asal_sekolah: "",
-    urutan_anak: "",
-    jumlah_saudara: "",
-    tinggi_badan: "",
-    berat_badan: "",
-    status_dalam_keluarga: "",
-    kip: "",
-    ukuran_baju: "",
+    alamat: "PPDB2020003",
+    alamat_rt: "",
+    alamat_rw: "",
+    alamat_desa: "",
+    alamat_kecamatan: "",
+    alamat_kota: "",
+    alamat_provinsi: "",
+    kode_pos: "",
+    tinggal_bersama: "",
+    jarak_kesekolah: "",
+    waktu_kesekolah: "",
+    transportasi: "",
   });
 
   const dataInputDaftar = [
     {
-      type: "text",
-      title: "Nomor Pendaftaran",
-      name: "no_pendaftaran",
-      placeholder: "nodftar",
-      value: formData.no_pendaftaran,
-      disabled: true,
-    },
-    {
-      type: "text",
-      title: "Nama Lengkap",
-      name: "nama_lengkap",
-      placeholder: "Nama lengkap",
-      value: formData.nama_lengkap,
+      type: "textarea",
+      title: "Alamat",
+      name: "alamat",
+      placeholder: "Isi alamat lengkapmu disini...",
+      value: formData.alamat,
     },
     {
       type: "number",
-      title: "No Handphone",
-      placeholder: "contoh: +621149902234",
-      name: "no_hp",
-      value: formData.no_hp,
-    },
-    {
-      type: "text",
-      title: "Asal Sekolah",
-      name: "asal_sekolah",
-      placeholder: "Asal sekolah",
-      value: formData.asal_sekolah,
-    },
-    {
-      type: "text",
-      title: "Tanah Kelahiran",
-      name: "tempat",
-      placeholder: "Kabupaten/kota",
-      value: formData.tempat,
+      title: "RT",
+      name: "alamat_desa",
+      placeholder: "RT",
+      value: formData.alamat_rt,
       doubled: true,
-      type2: "date",
-      title2: "Tanggal Lahir",
-      name2: "tanggal_lahir",
-      placeholder2: "",
-      value2: formData.tanggal_lahir,
-    },
-    {
-      type: "number",
-      title: "NISN",
-      name: "nisn",
-      placeholder: "NISN",
-      value: formData.nisn,
-    },
-    {
-      type: "number",
-      title: "NIK",
-      name: "nik",
-      placeholder: "NIK",
-      value: formData.nik,
-    },
-    {
-      type: "number",
-      title: "Anak Ke",
-      name: "urutan_anak",
-      placeholder: "Anak ke",
-      value: formData.urutan_anak,
-      doubled: true,
-      type2: "number",
-      title2: "Jumlah Saudara",
-      name2: "jumlah_saudara",
-      placeholder2: "Jumlah saudara",
-      value2: formData.jumlah_saudara,
-    },
-
-    {
-      type: "number",
-      title: "Nomor Kartu Keluarga",
-      name: "no_kk",
-      placeholder: "Nomor kartu keluarga",
-      value: formData.no_kk,
-    },
-
-    {
-      type: "date",
-      title: "Tanggal Lahir",
-      name: "tanggal_lahir",
-      placeholder: "",
-      value: formData.tanggal_lahir,
-      hasDouble: true,
-    },
-
-    {
-      type: "number",
-      title: "Jumlah Saudara",
-      name: "jumlah_saudara",
-      placeholder: "Jumlah saudara",
-      value: formData.jumlah_saudara,
-      hasDouble: true,
-    },
-    {
-      type: "number",
-      title: "Berat Badan",
-      name: "berat_badan",
-      placeholder: "...Kg",
-      value: formData.berat_badan,
-      hasDouble: true,
+      title2: "RW",
+      type2: "nubmer",
+      placeholder2: "RW",
+      value2: formData.alamat_rw,
     },
     {
       type: "text",
-      title: "Status Dalam Keluarga",
-      name: "status_dalam_keluarga",
-      placeholder: "Status",
-      value: formData.status_dalam_keluarga,
+      title: "Desa",
+      name: "alamat_desa",
+      placeholder: "alamat desa",
+      value: formData.alamat_desa,
+    },
+    {
+      type: "text",
+      title: "Kecamatan",
+      name: "alamat_kecamatan",
+      placeholder: "alamat kecamatan",
+      value: formData.alamat_kecamatan,
+    },
+    {
+      type: "text",
+      title: "Provinsi",
+      name: "alamat_provinsi",
+      placeholder: "alamat provinsi",
+      value: formData.alamat_provinsi,
     },
     {
       type: "number",
-      title: "Tinggi Badan",
-      name: "tinggi_badan",
-      placeholder: "...cm",
-      value: formData.tinggi_badan,
-      tripled: true,
-      type2: "number",
-      title2: "Berat Badan",
-      name2: "berat_badan",
-      placeholder2: "...Kg",
-      value2: formData.berat_badan,
-      type3: "text",
-      title3: "Ukuran Baju",
-      name3: "ukuran_baju",
-      placeholder3: "S/M/L/XL/XXL",
-      value3: formData.ukuran_baju,
+      title: "Kode Pos",
+      placeholder: "Kode pos",
+      name: "kode_pos",
+      value: formData.kode_pos,
     },
     {
-      type: "number",
-      title: "No KIP",
-      name: "no_kip",
-      placeholder: "Kosongkan kalau tidak ada",
-      value: formData.no_kip,
+      type: "select",
+      title: "Tinggal Bersama",
+      name: "tinggal_bersama",
+      placeholder: "Pilih opsi",
+      value: formData.tinggal_bersama,
+      option: ["orang_tua", "wali", "kost"],
+    },
+    {
+      type: "text",
+      title: "Jarak Tempuh ke Sekolah (m)",
+      name: "jarak_kesekolah",
+      placeholder: "contoh: 100 M",
+      value: formData.jarak_kesekolah,
+    },
+    {
+      type: "text",
+      title: "Waktu Tempuh ke Kesekolah (m)",
+      name: "waktu_kesekolah",
+      placeholder: "contoh: 20 Menit",
+      value: formData.waktu_kesekolah,
+    },
+    {
+      type: "select",
+      title: "Transportasi",
+      name: "transportasi",
+      value: formData.transportasi,
+      placeholder: "Pilih transportasi",
+      option: ["jalan_kaki", "sepeda", "sepeda_motor", "angkutan_umum"],
     },
   ];
 
@@ -171,34 +107,16 @@ const ConstentDashFull = () => {
           <div className="flex items-center ">
             <div className="text-center text-color-dark">
               <h1 className="text-2xl lg:text-3xl font-semibold drop-shadow-2xl">
-                Lengkapi Data Diri!
+                Lengkapi Data Alamat!
               </h1>
               <p className="pb-6 pt-3 text-sm max-w-sm max-w-440 text-center ">
-                Pastikan anda memasukan data pribadi dengan benar, besar kecil
-                huruf nama sesuai Kartu Keluarga!
+                Pastikan anda memasukan data alamat dengan benar, Masukan data sebenar benarnya!
               </p>
             </div>
           </div>
           {/* Header text end */}
           <InfoDaftarSuccess />
-            {/* Input data end */}
           {/* Input data start  */}
-          <div className="w-full flex justify-center mb-4">
-            <label className="flex flex-col justify-center items-center gap-1">
-              <span className="label-text text-nowrap whitespace-nowrap text-color-dark font-semibold text-base">
-                Foto Siswa
-              </span>
-              <div className="w-28 h-28 rounded-full bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder input input-bordered flex items-end justify-end text-color-secondary">
-                <Pencil size={32} className="-mr-4" />
-              </div>
-            </label>
-            <input
-              type="file"
-              name="foto"
-              className="absolute bg-color-birulaut h-28 w-28 rounded-full mt-7 opacity-0 cursor-pointer"
-              required
-            />
-          </div>
           <div className="flex-col flex lg:grid lg:grid-cols-3  gap-4 gap-x-6">
             {dataInputDaftar.map((cb, index) => (
               <InputFormUser
@@ -209,6 +127,7 @@ const ConstentDashFull = () => {
               />
             ))}
           </div>
+
           <div className="w-full mt-5 gap-3  flex justify-end">
             <button className="btn bg-color-primary text-color-birulaut border-color-birulaut hover:bg-color-birulaut hover:text-color-primary  shadow-md w-24 sm:h-10  h-5">
               Sebelumnya
@@ -224,7 +143,7 @@ const ConstentDashFull = () => {
   );
 };
 
-export default ConstentDashFull;
+export default ContentDashMLocation;
 
 export const InputFormUser = ({ cb, setFormData, formData }) => {
   const handleChange = (e) => {
@@ -246,14 +165,20 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
             onChange={handleChange}
             name={cb.name}
             //   ref={input1}
-            className="select select-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2"
+            className="select capitalize select-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2"
             required
           >
             <option value="" disabled>
-              Jenis pendaftaran
+              {cb.placeholder}
             </option>
-            <option value="siswa_baru">Siswa baru</option>
-            <option value="pindahan">Pindahan</option>
+            {cb.option.map((sb, indax) => {
+              const usetitle = sb.split("_").join(" ");
+              return (
+                <option value={sb} key={indax} className="capitalize">
+                  {usetitle}
+                </option>
+              );
+            })}
           </select>
         </div>
       ) : cb.type !== "textarea" ? (
@@ -378,7 +303,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
           </div>
         )
       ) : (
-        <div className="w-full sm:col-span-2">
+        <div className="w-full sm:col-span-3">
           <span className="label-text text-nowrap whitespace-nowrap text-color-dark font-semibold w-full text-base">
             {cb.title}
           </span>

@@ -27,6 +27,10 @@ import { usePathname } from "next/navigation";
 
 const NavbarMobile = () => {
   const path = usePathname();
+  const trimPath = path.split("/")
+  const isPayment = trimPath[2] === "payment"
+  const isForm = trimPath[3] === "forms"
+
 
   const dataIcon = [
     {
@@ -38,7 +42,7 @@ const NavbarMobile = () => {
       icon: (
         <CreditCard
           size={26}
-          weight={path === "/Users/payment" ? "fill" : "regular"}
+          weight={isPayment ? "fill" : "regular"}
           tabIndex={1}
           role="button"
         />
@@ -49,19 +53,19 @@ const NavbarMobile = () => {
       icon: (
         <IdentificationBadge
           size={26}
-          weight={path === "/Users/dashboard2" ? "fill" : "regular"}
+          weight={isForm ? "fill" : "regular"}
           tabIndex={0}
           role="button"
         />
       ),
     },
     {
-      href: "/user",
+      href: "/News",
       icon: (
         <Megaphone
           size={26}
           className="mirror-h"
-          weight={path === "/details/123" ? "fill" : "regular"}
+          weight={path === "/News" ? "fill" : "regular"}
         />
       ),
     },
@@ -89,6 +93,98 @@ const NavbarMobile = () => {
 export default NavbarMobile;
 
 export const IconsNav = ({ children, href, active }) => {
+  const path = usePathname();
+  const iconIptData2 = {
+    data: [
+      {
+        logo: (
+          <Student
+            size={26}
+            weight={
+              path === "/Users/dashboard2/forms/student" ? "fill" : "regular"
+            }
+          />
+        ),
+        name: "Data Diri",
+        href: "/Users/dashboard2/forms/student",
+      },
+      {
+        logo: (
+          <MapPinArea
+            size={26}
+            weight={
+              path === "/Users/dashboard2/forms/location" ? "fill" : "regular"
+            }
+          />
+        ),
+        name: "Data Alamat",
+        href: "/Users/dashboard2/forms/location",
+      },
+      {
+        logo: (
+          <Users
+            size={26}
+            weight={
+              path === "/Users/dashboard2/forms/parents" ? "fill" : "regular"
+            }
+          />
+        ),
+        name: "Orang Tua",
+        href: "/Users/dashboard2/forms/parents",
+      },
+      {
+        logo: (
+          <Files
+            size={26}
+            weight={
+              path === "/Users/dashboard2/forms/document" ? "fill" : "regular"
+            }
+          />
+        ),
+        name: "Dokumen",
+        href: "/Users/dashboard2/forms/document",
+      },
+    ],
+  };
+  const logoPayment = {
+    data: [
+      {
+        nama: "Data Biaya",
+        logo: <Cardholder size={26} 
+        weight={
+          path === "/Users/payment" ? "fill" : "regular"
+        }
+        />,
+        href: "/Users/payment",
+      },
+      {
+        nama: "Data Pembayaran",
+        logo: <Receipt size={26}  
+        weight={
+          path === "/Users/payment/paymentdata" ? "fill" : "regular"
+        }
+        />,
+        href: "/Users/payment/paymentdata",
+      },
+      {
+        nama: "Bayar",
+        logo: <HandCoins size={26} 
+        weight={
+          path === "/Users/payment/pay" ? "fill" : "regular"
+        } />,
+        href: "/Users/payment/pay",
+      },
+      {
+        nama: "Cara Pembayaran",
+        logo: <Question size={26} 
+        weight={
+          path === "/Users/payment/howtopay" ? "fill" : "regular"
+        }
+        />,
+        href: "/Users/payment/howtopay",
+      },
+    ]
+  }
   return (
     <>
       {href !== "/Users/dashboard2" && href !== "/Users/payment" ? (
@@ -111,30 +207,17 @@ export const IconsNav = ({ children, href, active }) => {
               tabIndex={0}
               className="dropdown-content z-[1] menu p-2 shadow bg-color-primary rounded-box w-52 mb-4"
             >
-              <li>
-                <div className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
-                  <Student size={26} weight={"fill"} />
-                  <p className="text-base">Data Diri</p>
-                </div>
+              {
+                iconIptData2.data.map((cb,index)=>(
+              <li key={index}>
+                <Link href={cb.href} className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
+                  {cb.logo}
+                  <p className="text-base">{cb.name}</p>
+                </Link>
               </li>
-              <li>
-                <div className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
-                  <MapPinArea size={26} />
-                  <p className="text-base">Data Alamat</p>
-                </div>
-              </li>
-              <li>
-                <div className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
-                  <Users size={26} />
-                  <p className="text-base">Orang Tua</p>
-                </div>
-              </li>
-              <li>
-                <div className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
-                  <Files size={26} />
-                  <p className="text-base">Dokumen</p>
-                </div>
-              </li>
+
+                ))
+              }
             </ul>
           </div>
         </>
@@ -149,30 +232,17 @@ export const IconsNav = ({ children, href, active }) => {
               tabIndex={1}
               className="dropdown-content z-[1] menu p-2 shadow bg-color-primary rounded-box w-52 mb-4"
             >
-              <li>
-                <div className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
-                  <Cardholder size={26} weight={"fill"} />
-                  <p className="text-base">Data Biaya</p>
-                </div>
+              {
+                logoPayment.data.map((cb,index)=>(
+              <li key={index}>
+                <Link href={cb.href} className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
+                  {cb.logo}
+                  <p className="text-base">{cb.nama}</p>
+                </Link>
               </li>
-              <li>
-                <div className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
-                  <Receipt size={26} />
-                  <p className="text-base">Data Pembayaran</p>
-                </div>
-              </li>
-              <li>
-                <div className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
-                  <HandCoins size={26} />
-                  <p className="text-base">Bayar</p>
-                </div>
-              </li>
-              <li>
-                <div className="w-full h-12 bg-color-primary hover:bg-color-putihbg flex justify-start items-center gap-2 text-color-dark font-light">
-                  <Question size={26} />
-                  <p className="text-base">Cara Pembayaran</p>
-                </div>
-              </li>
+
+                ))
+              }
             </ul>
           </div>
         </>

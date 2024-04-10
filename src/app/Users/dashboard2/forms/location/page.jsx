@@ -2,6 +2,7 @@ import ConstentDashFull from "@/components/Content/ConstentDashFull";
 import ContentDash from "@/components/Content/ContentDash";
 import ContentDash2 from "@/components/Content/ContentDash2";
 import ContentDashFiles from "@/components/Content/ContentDashFiles";
+import ContentDashMLocation from "@/components/Content/ContentDashMLocation";
 import ContentDashMobile from "@/components/Content/ContentDashMobile";
 import Navbar from "@/components/Navbar";
 import NavbarMobile from "@/components/utils/NavbarMobile";
@@ -35,7 +36,7 @@ const Page = async () => {
       {/* <NavbarWelcome  /> */}
       {/* <ContentDash2 dataUser={data} isFill={updateData} /> */}
       <NavbarSamping />
-      <ConstentDashFull />
+      <ContentDashMLocation />
       {/* <ContentDashFiles /> */}
       <div className="hidden">
       <ContentDashMobile />

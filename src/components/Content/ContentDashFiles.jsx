@@ -1,7 +1,8 @@
 "use client";
-import { UserRectangle } from "@phosphor-icons/react";
+import { Printer, UserRectangle } from "@phosphor-icons/react";
 import { GraduationCap } from "@phosphor-icons/react/dist/ssr";
 import React from "react";
+import InfoDaftarSuccess from "../utils/InfoDaftarSuccess";
 
 const ContentDashFiles = () => {
   const dataInput = {
@@ -78,7 +79,7 @@ const ContentDashFiles = () => {
             </div>
           </div>
           {/* Header text end */}
-
+          <InfoDaftarSuccess />
           {/* Input data start  */}
           <div className="flex gap-2 w-full text-color-dark">
             <UserRectangle size={26} />
@@ -133,7 +134,7 @@ const InputFormUser2 = ({ title }) => (
     </span>
     <input
       type="file"
-      className="file-input file-input-bordered file-input-success file:text-success file:bg-opacity-15 text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md"
+      className="file-input file-input-bordered file:border-success file-input-success file:text-success file:bg-opacity-15 text-color-dark bg-color-primary file:rounded-md  w-full mt-2 text-md"
     />
     <div className="w-full flex justify-end">
     <div className="mt-2 btn btn-xs btn-success bg-opacity-15 hover:bg-opacity-40 text-success" >

@@ -1,10 +1,9 @@
 "use client";
 import { Pencil, PencilRuler } from "@phosphor-icons/react";
-import { Pen, Printer } from "@phosphor-icons/react/dist/ssr";
+import { Pen } from "@phosphor-icons/react/dist/ssr";
 import React, { useState } from "react";
-import InfoDaftarSuccess from "../utils/InfoDaftarSuccess";
 
-const ConstentDashFull = () => {
+const ContentRegFirst = () => {
   const [formData, setFormData] = useState({
     no_pendaftaran: "PPDB2020003",
     nisn: "",
@@ -165,8 +164,17 @@ const ConstentDashFull = () => {
 
   return (
     <>
-      <div className=" bg-color-primary flex sm:w-full lg:ps-[14.65rem]  justify-center  py-6 sm:pt-10 lg:min-h-screen   max-lg:overflow-auto hidden-scrollbar ">
-        <div className="flex flex-col items-center max-lg:justify-center max-lg:pb-20 px-6 sm:px-9 lg:px-12 ">
+      <div className="max-sm:hidden min-h-[35.5svh] flex justify-center lg:hidden">
+        <div className="flex items-center ">
+          <div className="text-center text-color-dark">
+            <h1 className="text-2xl font-bold drop-shadow-2xl">
+              UNINDRA VIDEOS !!!
+            </h1>
+          </div>
+        </div>
+      </div>
+      <div className=" bg-color-primary flex sm:max-lg:fixed lg:flex sm:max-xl:bottom-0 sm:w-full sm:rounded-t-3xl lg:rounded-none sm:shadow-inner  lg:shadow-none lg:ps-[14.65rem]  justify-center  py-6 sm:pt-10  max-lg:h-4/6 lg:min-h-screen  max-lg:max-h-[66.6%] max-lg:overflow-auto hidden-scrollbar ">
+        <div className="flex flex-col items-center max-lg:justify-center sm:max-lg:absolute max-lg:pb-20 px-6 lg:px-12 ">
           {/* Header text start  */}
           <div className="flex items-center ">
             <div className="text-center text-color-dark">
@@ -180,8 +188,7 @@ const ConstentDashFull = () => {
             </div>
           </div>
           {/* Header text end */}
-          <InfoDaftarSuccess />
-            {/* Input data end */}
+
           {/* Input data start  */}
           <div className="w-full flex justify-center mb-4">
             <label className="flex flex-col justify-center items-center gap-1">
@@ -224,7 +231,7 @@ const ConstentDashFull = () => {
   );
 };
 
-export default ConstentDashFull;
+export default ContentRegFirst;
 
 export const InputFormUser = ({ cb, setFormData, formData }) => {
   const handleChange = (e) => {
