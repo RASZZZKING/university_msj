@@ -19,13 +19,19 @@ import { redirect } from "next/dist/server/api-utils";
 import prisma from "@/models/libs/prisma";
 
 const Page = async() => {
-  const user = await authUserSession()
-  console.log(user);
-  console.log(user?.email);
-  const data = await prisma.account.findFirst({
-    where: { email: user?.email }
-  })
-
+  // const user = await authUserSession()
+  // console.log(user);
+  // console.log(user?.email);
+  // const data = await prisma.account.findFirst({
+  //   where: { email: user?.email }
+  // })
+  const user = {
+    user: {
+      email: "farras.akhirio.ramadhan.204@gmail.com",
+      name: "Farras Akra",
+      id: 123213124124
+    }
+  }
   return (
     <div className="bg-white min-h-svh">
       <Navbar user={user} hasReg={data} />
