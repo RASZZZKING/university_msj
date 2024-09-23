@@ -37,7 +37,7 @@ const NavbarSamping = () => {
       ),
     },
     {
-      href: "/Users/dashboard2/forms",
+      href: "/Users/dashboard2/forms/student",
       name: "Formulir",
       icon: (
         <IdentificationBadge

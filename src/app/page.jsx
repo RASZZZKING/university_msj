@@ -34,7 +34,7 @@ const Page = async() => {
   }
   return (
     <div className="bg-white min-h-svh">
-      <Navbar user={user} hasReg={data} />
+      <Navbar user={user} hasReg={user} />
       <Carousel2 />
       <VideosPage />
       <ParalaxReview />

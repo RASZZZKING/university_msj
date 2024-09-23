@@ -35,7 +35,7 @@ const Page = async () => {
     <div className="min-h-svh max-h-svh bg-color-primary">
       {/* <Navbar2 historyInput={historyInput} /> */}
       <NavbarWelcome />
-      <ContentDash dataUser={data} isFill={updateData} />
+      <ContentDash dataUser={user} isFill={user} />
     </div>
     </>
   );
