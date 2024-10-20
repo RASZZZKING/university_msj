@@ -1,5 +1,4 @@
 "use client";
-import { fasilitas } from "@/models/data/fasilitas";
 import React, { useState } from "react";
 
 const Compage = ({data}) => {

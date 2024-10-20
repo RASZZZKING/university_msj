@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import authUserSession from "@/models/libs/auth-libs";
 import prisma from "@/models/libs/prisma";
-import Compage from "../Facility/compage";
 import { eskul } from "@/models/data/eskul";
+import Compage from "../Facility/Compage";
 
 const Page = async () => {
   const user = await authUserSession();

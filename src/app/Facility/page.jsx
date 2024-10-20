@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import authUserSession from "@/models/libs/auth-libs";
 import prisma from "@/models/libs/prisma";
-import Compage from "./compage";
 import { fasilitas } from "@/models/data/fasilitas";
+import Compage from "./Compage";
 
 
 const Page = async () => {
