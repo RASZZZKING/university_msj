@@ -1,8 +1,11 @@
 "use client";
 import { usePathname } from "next/navigation";
 import React, { useRef, useState } from "react";
+import PaymentPay from "../Payment/PaymentPay";
+import DataBiaya from "../Payment/DataBiaya";
+import DataPayment from "../Payment/DataPayment";
 
-const ContentPaymentPC = () => {
+const ContentPaymentPC = ({dataBiaya, statusDataBiaya, dataPembayarann ,dataUser}) => {
   const path = usePathname()
   const totalBayar = useRef();
   const tanggalBayar = useRef();
@@ -50,7 +53,7 @@ const ContentPaymentPC = () => {
       },
     ],
   };
-  const dataBiaya = {
+  const dataBiaya2 = {
     data: [
       {
         name: "SPP",
@@ -84,46 +87,11 @@ const ContentPaymentPC = () => {
         role="tabpanel"
         className="tab-content bg-base-100 border-base-300 rounded-box p-6"
       >
-        <div className="overflow-x-auto w-full">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr className="text-color-dark opacity-80">
-                <th></th>
-                <th>Kode Transaksi</th>
-                <th>Nama Siswa</th>
-                <th>Jumlah Bayar</th>
-                <th>Tanggal Bayar</th>
-                <th>Nama Biaya</th>
-                <th>Verifikasi</th>
-                <th>Bukti</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>202193912391</td>
-                <td>Fuji Merapi Jawa</td>
-                <td>Rp 300.000</td>
-                <td>23-3-2022</td>
-                <td>Biaya Gedung</td>
-                <td>Pembayaran diterima</td>
-                <td>
-                  <div className="p-1 cursor-pointer w-16 flex justify-center text-color-gray  border-color-birulaut text-color-birulaut border rounded-lg hover:scale-105 ease-in-out transition-all">
-                    Bukti
-                  </div>
-                </td>
-                <td>
-                  <div className="p-1 cursor-pointer w-16 flex justify-center text-color-gray  border-color-birulaut bg-color-birulaut text-color-primary hover:scale-105 ease-in-out transition-all border rounded-lg">
-                    Cetak
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <DataPayment
+            dataPembayaran={ dataPembayarann }
+            dataUser={dataUser}
+            dataBiaya={dataBiaya}
+          />
       </div>
     );
   };
@@ -132,26 +100,8 @@ const ContentPaymentPC = () => {
       role="tabpanel"
       className="tab-content  border-base-300 rounded-box p-6"
     >
-      <div className="overflow-x-auto w-full">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr className="text-color-dark opacity-80">
-              <th></th>
-              <th>Nama Biaya</th>
-              <th>Jumlah Bayar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>Fuji Merapi Jawa</td>
-              <td>Rp 300.000</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                <DataBiaya dataBiaya={dataBiaya} statusDataBiaya={statusDataBiaya} />
+
     </div>
   );
   const CaraPembayaran = () => (
@@ -275,33 +225,6 @@ const ContentPaymentPC = () => {
             </div>
           </div>
         </>
-        {/* <div className="flex w-full justify-around gap-5">
-
-                <div className="card bg-base-100 shadow-xl">
-                  <div className="card-body">
-                    <h2 className="card-title">Cash / Tunai</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                  </div>
-                </div>
-                <div className="card bg-base-100 shadow-xl">
-                  <div className="card-body">
-                    <h2 className="card-title">Cash / Tunai</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                  </div>
-                </div>
-                <div className="card bg-base-100 shadow-xl">
-                  <div className="card-body">
-                    <h2 className="card-title">Cash / Tunai</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                  </div>
-                </div>
-                <div className="card bg-base-100 shadow-xl">
-                  <div className="card-body">
-                    <h2 className="card-title">Cash / Tunai</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                  </div>
-                </div>
-                </div> */}
       </div>
     </div>
   );
@@ -310,63 +233,7 @@ const ContentPaymentPC = () => {
       role="tabpanel"
       className="tab-content  border-base-300 rounded-box p-6"
     >
-      <div className="flex justify-center">
-        <div className="card w-96 bg-base-100 shadow-xl">
-          <form className="card-body" onSubmit={handleSubmit}>
-            <h2 className="card-title text-xl">Tambah Pembayaran</h2>
-            <div className="w-full">
-              <span className="label-text text-color-dark font-extralight opacity-70 w-full text-base">
-                {"Jumlah Pembayaran"}
-              </span>
-              <input
-                // onChange={()=>handleTab(1)}
-                name={"name"}
-                type={"text"}
-                ref={totalBayar}
-                // value={value}
-                placeholder={"contoh: 5.000.000"}
-                className="input input-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md"
-                required
-              />
-            </div>
-            <div className="w-full">
-              <span className="label-text text-color-dark font-extralight opacity-70 w-full text-base">
-                {"Tanggal Pembayaran"}
-              </span>
-              <input
-                ref={tanggalBayar}
-                // onChange={()=>handleTab()}
-                name={"names"}
-                type={"date"}
-                // value={value}
-                className="input input-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md"
-                required
-              />
-            </div>
-            <div className="w-full">
-              <span className="label-text text-color-dark font-extralight opacity-70 w-full text-base">
-                {"Bukti Pembayaran"}
-              </span>
-              <input
-                // onChange={()=>handleTab()}
-                name={"namesz"}
-                type={"file"}
-                // value={value}
-                className="file-input file-input-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md"
-                required
-              />
-            </div>
-            <div className="card-actions justify-end mt-3">
-              <button
-                className="btn btn-primary btn-md bg-color-birulaut border-color-birulaut"
-                type="submit"
-              >
-                Buy Now
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <PaymentPay dataBiaya={dataBiaya} dataUser={dataUser} />
     </div>
   );
   const dataPayPC = {

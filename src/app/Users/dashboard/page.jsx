@@ -6,13 +6,13 @@ import prisma from "@/models/libs/prisma";
 import { redirect } from "next/navigation";
 
 const Page = async () => {
-  // const user = await authUserSession();
-  // const data = await prisma.account.findFirst({
-  //   where: { email: user?.email },
-  // });
-  // const updateData = await prisma.calonMahasiswa.findFirst({
-  //   where: {email: user?.email}
-  // })
+  const user = await authUserSession();
+  const data = await prisma.account.findFirst({
+    where: { email: user?.email },
+  });
+  const updateData = await prisma.calonMahasiswa.findFirst({
+    where: {email: user?.email}
+  })
   
 
 
@@ -23,13 +23,13 @@ const Page = async () => {
   //     redirect("/Register");
   //   }
   // }
-  const user = {
-    user: {
-      email: "farras.akhirio.ramadhan.204@gmail.com",
-      name: "Farras Akra",
-      id: 123213124124
-    }
-  }
+  // const user = {
+  //   user: {
+  //     email: "farras.akhirio.ramadhan.204@gmail.com",
+  //     name: "Farras Akra",
+  //     id: 123213124124
+  //   }
+  // }
   return (
     <>
     <div className="min-h-svh max-h-svh bg-color-primary">

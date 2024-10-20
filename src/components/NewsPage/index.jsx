@@ -1,4 +1,5 @@
 "use client";
+import { berita_event } from "@/models/data/berita_event";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePathname } from "next/navigation";
@@ -11,19 +12,17 @@ const News = () => {
       {path !== "/News" && <HeaderNews />}
       <div className="w-9/12 flex flex-col gap-8 ">
         <div className="flex max-md:flex-col w-full md:mt-3 gap-8">
-          <div className="rounded-lg mt-5 md:my-10 shadow-2xl bg-color-secondary aspect-video w-full md:w-6/12"></div>
+          <img src={berita_event.data[4].image_url} className="rounded-lg mt-5 md:my-10 shadow-2xl bg-color-secondary aspect-video object-cover w-full md:w-6/12"></img>
           <div className="md:w-6/12 w-full gap-8 md:pe-8 flex max-sm:flex-col">
             <div className="aspect-89 shadow-2xl flex flex-col justify-between items-center rounded-lg bg-color-primary w-full sm:w-6/12">
               <div className=" flex flex-col justify-center items-center">
-                <div className="w-full aspect-video rounded-t-lg bg-color-secondary"></div>
+                <img src={berita_event.data[0].image_url} className="w-full object-cover aspect-video rounded-t-lg bg-color-secondary"></img>
                 <div className="w-9/12 mt-4 flex flex-col gap-1">
                   <p className="text-lg font-semibold text-color-dark">
-                    Makrab Events
+                    {berita_event.data[0].nama}
                   </p>
                   <p className="text-sm text-color-dark opacity-80">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Incidunt sint eos quidem! Saepe veritatis veniam quia eum
-                    ut, ipsam vel...
+                    {berita_event.data[0].description}
                   </p>
                 </div>
               </div>
@@ -33,15 +32,13 @@ const News = () => {
             </div>
             <div className="aspect-89 shadow-2xl flex flex-col justify-between items-center rounded-lg bg-color-primary w-full sm:w-6/12">
               <div className=" flex flex-col justify-center items-center">
-                <div className="w-full aspect-video rounded-t-lg bg-color-secondary"></div>
+                <img src={berita_event.data[1].image_url} className="w-full object-cover aspect-video rounded-t-lg bg-color-secondary"></img>
                 <div className="w-9/12 mt-4 flex flex-col gap-1">
                   <p className="text-lg font-semibold text-color-dark">
-                    Makrab Events
+                    {berita_event.data[1].nama}
                   </p>
                   <p className="text-sm text-color-dark opacity-80">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Incidunt sint eos quidem! Saepe veritatis veniam quia eum
-                    ut, ipsam vel...
+                    {berita_event.data[1].description}
                   </p>
                 </div>
               </div>
@@ -52,19 +49,17 @@ const News = () => {
           </div>
         </div>
         <div className="flex  flex-row-reverse max-md:flex-col w-full md:mt-3 gap-8">
-          <div className="rounded-lg mt-5 md:my-10 md:ms-8 shadow-2xl bg-color-secondary aspect-video w-full md:w-6/12"></div>
+          <img src={berita_event.data[5].image_url} className="rounded-lg mt-5 md:my-10 md:ms-8 shadow-2xl object-cover bg-color-secondary aspect-video w-full md:w-6/12"></img>
           <div className="md:w-6/12 w-full gap-8 flex max-sm:flex-col ">
             <div className="aspect-89 shadow-2xl flex flex-col justify-between items-center rounded-lg bg-color-primary w-full sm:w-6/12">
               <div className=" flex flex-col justify-center items-center">
-                <div className="w-full aspect-video rounded-t-lg bg-color-secondary"></div>
+                <img src={berita_event.data[2].image_url} className="w-full object-cover aspect-video rounded-t-lg bg-color-secondary"></img>
                 <div className="w-9/12 mt-4 flex flex-col gap-1">
                   <p className="text-lg font-semibold text-color-dark">
-                    Makrab Events
+                    {berita_event.data[2].nama}
                   </p>
                   <p className="text-sm text-color-dark opacity-80">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Incidunt sint eos quidem! Saepe veritatis veniam quia eum
-                    ut, ipsam vel...
+                    {berita_event.data[2].description}
                   </p>
                 </div>
               </div>
@@ -74,15 +69,13 @@ const News = () => {
             </div>
             <div className="aspect-89 shadow-2xl flex flex-col justify-between items-center rounded-lg bg-color-primary w-full sm:w-6/12">
               <div className=" flex flex-col justify-center items-center">
-                <div className="w-full aspect-video rounded-t-lg bg-color-secondary"></div>
+                <img src={berita_event.data[3].image_url} className="w-full object-cover aspect-video rounded-t-lg bg-color-secondary"></img>
                 <div className="w-9/12 mt-4 flex flex-col gap-1">
                   <p className="text-lg font-semibold text-color-dark">
-                    Makrab Events
+                    {berita_event.data[3].nama}
                   </p>
                   <p className="text-sm text-color-dark opacity-80">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Incidunt sint eos quidem! Saepe veritatis veniam quia eum
-                    ut, ipsam vel...
+                    {berita_event.data[3].description}
                   </p>
                 </div>
               </div>

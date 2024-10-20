@@ -1,14 +1,19 @@
 import HelpComp from '@/components/HelpComp'
 import Navbar from '@/components/Navbar'
-import React from 'react'
+import authUserSession from '@/models/libs/auth-libs'
 
-const page = () => {
+const Page = async() => {
+  const user = await authUserSession()
+  const data = await prisma.account.findFirst({
+    where: { email: user?.email }
+  })
+  const paraPendaftar = await prisma.account.findMany()
   return (
     <>
-        <Navbar />
-        <HelpComp />
+        <Navbar user={user}  hasReg={data} />
+        <HelpComp pendaftar={paraPendaftar.length} />
     </>
   )
 }
 
-export default page
+export default Page

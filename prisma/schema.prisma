@@ -1,30 +1,22 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model account {
   id       Int    @id @default(autoincrement())
   nama     String
-  email    String
+  email    String @unique
   nomor    String
+  jenjang String
   jalur    String
-  password String
-
-  @@unique([email])
 }
 
-model calonMahasiswa {
+model calon_mahasiswa {
   id             Int    @id @default(autoincrement())
   email          String
   nama           String
@@ -43,3 +35,109 @@ model calonMahasiswa {
   prodi          String
   NIK            String
 }
+
+model data_calon_siswa {
+  id                          Int    @id @default(autoincrement())
+  id_user                     Int  @unique
+  no_pendaftaran              String
+  foto                        String
+  nama_lengkap                String
+  email                       String
+  nisn                        String
+  nik                         String
+  no_kk                       String
+  tempat                      String
+  tanggal_lahir               String 
+  no_hp                       String
+  asal_sekolah                String
+  urutan_anak                 String
+  jumlah_saudara              String
+  tinggi_badan                String
+  berat_badan                 String
+  status_dalam_keluarga       String
+  kip                         String
+  ukuran_baju                 String
+  status                      String
+}
+
+model data_alamat_siswa {
+  id                    Int @id @default(autoincrement())
+  id_user               Int  @unique
+  alamat                String
+  rt                    String
+  rw                    String
+  desa                  String
+  kecamatan             String
+  kota                  String
+  provinsi              String
+  kode_pos              String
+  tinggal_bersama       String
+  jarak_kesekolah       String
+  waktu_kesekolah       String
+  transportasi          String
+  status                String
+}
+
+model data_orangtua {
+    id                    Int      @id @default(autoincrement())
+    id_user               Int      @unique
+    nik_ayah              String
+    nama_ayah             String
+    tempat_lahir_ayah     String
+    tanggal_lahir_ayah    String
+    pendidikan_ayah       String
+    pekerjaan_ayah        String
+    penghasilan_ayah      String
+    no_hp_ayah            String
+    nik_ibu               String
+    nama_ibu              String
+    tempat_lahir_ibu      String
+    tanggal_lahir_ibu     String
+    pendidikan_ibu        String
+    pekerjaan_ibu         String
+    penghasilan_ibu       String
+    no_hp_ibu             String
+    nama_wali             String?
+    nik_wali              String?
+    tempat_lahir_wali     String?
+    tanggal_lahir_wali    String?
+    pendidikan_wali       String?
+    pekerjaan_wali        String?
+    penghasilan_wali      String?
+    no_hp_wali            String?
+    status                String
+}
+
+model data_dokumen {
+      id                    Int @id @default(autoincrement())
+      id_user               Int @unique
+      kartu_keluarga        String
+      akte_kelahiran        String
+      ktp_orang_tua         String
+      skl                   String
+      ijazah                String
+      shun_skhun            String
+      rapor                 String
+      kartu_nisn            String
+      createdAt             DateTime  @default(now())
+      updatedAt             DateTime  @updatedAt
+      status                String
+
+}
+
+model data_pembayaran{
+  id                  Int @unique @id @default(autoincrement())
+  id_user             Int 
+  nama_pembayaran     String
+  jumlah_pembayaran   String
+  bukti_pembayaran    String
+  status              String
+  createdAt           DateTime  @default(now())
+}
+
+model data_biaya{
+  id                  Int @id @default(autoincrement())
+  nama_biaya          String
+  jumlah_biaya        Int
+}
+

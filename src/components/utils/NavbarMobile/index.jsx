@@ -1,24 +1,17 @@
 "use client";
 import React, { FunctionComponent, ReactNode, useEffect, useRef } from "react";
 import {
-  Bank,
-  Basket,
   Cardholder,
   CreditCard,
   Files,
   HandCoins,
-  Heart,
   House,
   IdentificationBadge,
-  MagnifyingGlass,
   MapPinArea,
   Megaphone,
-  PiggyBank,
   Question,
   Receipt,
   Student,
-  User,
-  UserCircle,
   UserList,
   Users,
 } from "@phosphor-icons/react";

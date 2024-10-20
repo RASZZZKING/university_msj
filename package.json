@@ -16,19 +16,26 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@phosphor-icons/react": "^2.1.4",
-    "@prisma/client": "^5.10.2",
+    "@prisma/client": "^5.20.0",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
+    "caniuse-lite": "^1.0.30001669",
     "daisyui": "^4.9.0",
+    "formidable": "^3.5.1",
     "next": "14.1.0",
     "next-auth": "^4.24.6",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "to-rupiah": "^1.0.6"
   },
   "devDependencies": {
+    "@types/node": "22.7.6",
+    "@types/react": "18.3.11",
     "autoprefixer": "^10.0.1",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.15",
     "postcss": "^8",
-    "prisma": "^5.11.0",
+    "prisma": "^5.20.0",
     "tailwindcss": "^3.3.0"
   }
 }

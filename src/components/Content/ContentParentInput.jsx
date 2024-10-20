@@ -2,33 +2,43 @@
 import { Printer, UserCircleGear } from "@phosphor-icons/react";
 import React, { useState } from "react";
 import InfoDaftarSuccess from "../utils/InfoDaftarSuccess";
+import { useRouter } from "next/navigation";
 
-const ContentParetnsInput = () => {
+const ContentParetnsInput = ({ isFill, data, dFull }) => {
+  const router = useRouter()
+
   const [formData, setFormData] = useState({
-    nik_ayah: "",
-    nama_ayah: "",
-    tempat_lahir_ayah: "",
-    tanggal_lahir_ayah: "",
-    pendidikan_ayah: "",
-    pekerjaan_ayah: "",
-    penghasilan_ayah: "",
-    no_hp_ayah: "",
-    nik_ibu: "",
-    nama_ibu: "",
-    tempat_lahir_ibu: "",
-    tanggal_lahir_ibu: "",
-    pendidikan_ibu: "",
-    pekerjaan_ibu: "",
-    penghasilan_ibu: "",
-    no_hp_ibu: "",
-    nik_wali: "",
-    nama_wali: "",
-    tempat_lahir_wali: "",
-    tanggal_lahir_wali: "",
-    pendidikan_wali: "",
-    pekerjaan_wali: "",
-    penghasilan_wali: "",
-    no_hp_wali: "",
+    id: isFill && isFill !== null ? isFill.id : "",
+    id_user: data.id,
+    nik_ayah: isFill && isFill !== null ? isFill.nik_ayah : "",
+    nama_ayah: isFill && isFill !== null ? isFill.nama_ayah : "",
+    tempat_lahir_ayah:
+      isFill && isFill !== null ? isFill.tempat_lahir_ayah : "",
+    tanggal_lahir_ayah:
+      isFill && isFill !== null ? isFill.tanggal_lahir_ayah : "",
+    pendidikan_ayah: isFill && isFill !== null ? isFill.pendidikan_ayah : "",
+    pekerjaan_ayah: isFill && isFill !== null ? isFill.pekerjaan_ayah : "",
+    penghasilan_ayah: isFill && isFill !== null ? isFill.penghasilan_ayah : "",
+    no_hp_ayah: isFill && isFill !== null ? isFill.no_hp_ayah : "",
+    nik_ibu: isFill && isFill !== null ? isFill.nik_ibu : "",
+    nama_ibu: isFill && isFill !== null ? isFill.nama_ibu : "",
+    tempat_lahir_ibu: isFill && isFill !== null ? isFill.tempat_lahir_ibu : "",
+    tanggal_lahir_ibu:
+      isFill && isFill !== null ? isFill.tanggal_lahir_ibu : "",
+    pendidikan_ibu: isFill && isFill !== null ? isFill.pendidikan_ibu : "",
+    pekerjaan_ibu: isFill && isFill !== null ? isFill.pekerjaan_ibu : "",
+    penghasilan_ibu: isFill && isFill !== null ? isFill.penghasilan_ibu : "",
+    no_hp_ibu: isFill && isFill !== null ? isFill.no_hp_ibu : "",
+    nik_wali: isFill && isFill !== null ? isFill.nik_wali : "",
+    nama_wali: isFill && isFill !== null ? isFill.nama_wali : "",
+    tempat_lahir_wali:
+      isFill && isFill !== null ? isFill.tempat_lahir_wali : "",
+    tanggal_lahir_wali:
+      isFill && isFill !== null ? isFill.tanggal_lahir_wali : "",
+    pendidikan_wali: isFill && isFill !== null ? isFill.pendidikan_wali : "",
+    pekerjaan_wali: isFill && isFill !== null ? isFill.penghasilan_wali : "",
+    penghasilan_wali: isFill && isFill !== null ? isFill.penghasilan_wali : "",
+    no_hp_wali: isFill && isFill !== null ? isFill.no_hp_wali : "",
   });
 
   const dataAyah = [
@@ -101,7 +111,7 @@ const ContentParetnsInput = () => {
     },
     {
       type: "select",
-      title: "Pekerjaan",
+      title: "Penghasilan",
       placeholder: "pilih penghasilan ayah",
       name: "penghasilan_ayah",
       value: formData.penghasilan_ayah,
@@ -122,7 +132,6 @@ const ContentParetnsInput = () => {
       placeholder: "nomor telepon: +62xxxx",
       value: formData.no_hp_ayah,
     },
-
   ];
   const dataIbu = [
     {
@@ -194,7 +203,7 @@ const ContentParetnsInput = () => {
     },
     {
       type: "select",
-      title: "Pekerjaan",
+      title: "Penghasilan",
       placeholder: "pilih penghasilan ibu",
       name: "penghasilan_ibu",
       value: formData.penghasilan_ibu,
@@ -247,9 +256,9 @@ const ContentParetnsInput = () => {
     {
       type: "select",
       title: "Pendidikan",
-      placeholder: "pilih pendidikan terakhir ayah",
-      name: "pendidikan_ayah",
-      value: formData.pendidikan_ayah,
+      placeholder: "pilih pendidikan terakhir wali",
+      name: "pendidikan_wali",
+      value: formData.pendidikan_wali,
       option: [
         "Tidak_Sekolah",
         "SD",
@@ -286,7 +295,7 @@ const ContentParetnsInput = () => {
     },
     {
       type: "select",
-      title: "Pekerjaan",
+      title: "Penghasilan",
       placeholder: "pilih penghasilan wali",
       name: "penghasilan_wali",
       value: formData.penghasilan_wali,
@@ -309,24 +318,151 @@ const ContentParetnsInput = () => {
     },
   ];
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((dataPrev) => ({
+      ...dataPrev,
+      [name]: value,
+    }));
+  };
+
+  const kirimData = async (e) => {
+    e.preventDefault();
+
+    if (
+      formData.nik_ayah.trim() === "" ||
+      formData.nama_ayah.trim() === "" ||
+      formData.tempat_lahir_ayah.trim() === "" ||
+      formData.tanggal_lahir_ayah.trim() === "" ||
+      formData.pendidikan_ayah.trim() === "" ||
+      formData.pekerjaan_ayah.trim() === "" ||
+      formData.penghasilan_ayah.trim() === "" ||
+      formData.no_hp_ayah.trim() === "" ||
+      formData.nik_ibu.trim() === "" ||
+      formData.nama_ibu.trim() === "" ||
+      formData.tempat_lahir_ibu.trim() === "" ||
+      formData.tanggal_lahir_ibu.trim() === "" ||
+      formData.pendidikan_ibu.trim() === "" ||
+      formData.pekerjaan_ibu.trim() === "" ||
+      formData.penghasilan_ibu.trim() === "" ||
+      formData.no_hp_ibu.trim() === ""
+    ) {
+      return;
+    }
+
+    const {
+      id,
+      id_user,
+      nik_ayah,
+      nama_ayah,
+      tempat_lahir_ayah,
+      tanggal_lahir_ayah,
+      pendidikan_ayah,
+      pekerjaan_ayah,
+      penghasilan_ayah,
+      no_hp_ayah,
+      nik_ibu,
+      nama_ibu,
+      tempat_lahir_ibu,
+      tanggal_lahir_ibu,
+      pendidikan_ibu,
+      pekerjaan_ibu,
+      penghasilan_ibu,
+      no_hp_ibu,
+      nik_wali,
+      nama_wali,
+      tempat_lahir_wali,
+      tanggal_lahir_wali,
+      pendidikan_wali,
+      pekerjaan_wali,
+      penghasilan_wali,
+      no_hp_wali,
+    } = formData;
+    const datax = {
+      id,
+      id_user,
+      nik_ayah,
+      nama_ayah,
+      tempat_lahir_ayah,
+      tanggal_lahir_ayah,
+      pendidikan_ayah,
+      pekerjaan_ayah,
+      penghasilan_ayah,
+      no_hp_ayah,
+      nik_ibu,
+      nama_ibu,
+      tempat_lahir_ibu,
+      tanggal_lahir_ibu,
+      pendidikan_ibu,
+      pekerjaan_ibu,
+      penghasilan_ibu,
+      no_hp_ibu,
+      nik_wali,
+      nama_wali,
+      tempat_lahir_wali,
+      tanggal_lahir_wali,
+      pendidikan_wali,
+      pekerjaan_wali,
+      penghasilan_wali,
+      no_hp_wali,
+    };
+
+    const response = await fetch(
+      isFill && isFill !== null
+        ? "/api/v1/dataOrangtua/update"
+        : "/api/v1/dataOrangtua/create",
+      {
+        method: "POST",
+        body: JSON.stringify(datax),
+      }
+    );
+    const logs = await response.json();
+    console.log("🚀 ~ kirimData ~ logs:", logs);
+  if(logs.status === 200) {
+    alert("Data berhasil diupload")
+    dFull.dSiswa === null ? router.push("/Users/dashboard2/forms/student")  : dFull.dMaps === null ? router.push("/Users/dashboard2/forms/location") : dFull.dDocs === null ? router.push("/Users/dashboard2/forms/document") :  router.refresh()
+  } 
+    
+  };
+
   return (
     <>
-      <div className=" bg-color-primary flex sm:w-full lg:ps-[14.65rem]  justify-center  py-6 sm:pt-10 lg:min-h-screen   max-lg:overflow-auto hidden-scrollbar ">
-        <div className="flex flex-col  w-full sm:max-lg:w-3/4 items-center max-lg:justify-center max-lg:pb-20 px-6 sm:px-9 lg:px-12 ">
+      <div className=" bg-color-primary flex sm:w-full lg:ps-[18rem]  lg:px-5 justify-center  py-6 sm:pt-10 lg:min-h-screen   max-lg:overflow-auto hidden-scrollbar ">
+        <form onSubmit={kirimData} action={""} method="post" className="flex flex-col  w-full sm:max-lg:w-3/4 items-center max-lg:justify-center max-lg:pb-20 px-6 sm:px-9 lg:px-12 ">
           {/* Header text start  */}
-          <div className="flex items-center ">
-            <div className="text-center text-color-dark">
+          <InfoDaftarSuccess isFill={isFill} />
+          <div className="flex items-center justify-center w-full relative max-lg:mt-7 ">
+            <div className="absolute flex justify-between w-full max-lg:hidden">
+              <button
+                className={`btn ${
+                  isFill && isFill !== null
+                    ? isFill.status === "Diterima"
+                      ? "btn-success text-success"
+                      : isFill.status === "Pending" &&
+                        "btn-warning text-warning"
+                    : "btn-error text-error"
+                } hover:bg-opacity-50 bg-opacity-25  shadow-md btn-sm  h-5`}
+              >
+                <p className=" whitespace-nowrap text-nowrap">
+                  {isFill ? isFill.status : "Belum Isi Form"}
+                </p>
+              </button>
+              <button className="btn btn-primary flex gap-1  bg-opacity-20 hover:bg-opacity-50 text-primary hover:text-color-birulaut  shadow-md w-24 ">
+                <Printer size={26} />
+                <p>Print</p>
+              </button>
+            </div>
+            <div className="text-center text-color-dark max-sm:mt-6">
               <h1 className="text-2xl lg:text-3xl font-semibold drop-shadow-2xl">
                 Tolong dilengkapi ya abi dan umi!
               </h1>
               <p className="pb-6 pt-3 text-sm max-w-sm max-w-440 text-center ">
-                Pastikan anda memasukan data pribadi dengan benar, Masukan data dengan
-                sebenar benarnya!
+                Pastikan anda memasukan data pribadi dengan benar, Masukan data
+                dengan sebenar benarnya!
               </p>
             </div>
           </div>
           {/* Header text end */}
-          <InfoDaftarSuccess />
           {/* Input data start  */}
           <div className="flex my-4 flex-row items-center w-full text-color-dark gap-3">
             <UserCircleGear size={26} />
@@ -334,12 +470,7 @@ const ContentParetnsInput = () => {
           </div>
           <div className="flex-col flex w-full  lg:grid lg:grid-cols-3  gap-4 gap-x-6">
             {dataAyah.map((cb, index) => (
-              <InputFormUser
-                key={index}
-                setFormData={setFormData}
-                formData={formData}
-                cb={cb}
-              />
+              <InputFormUser key={index} handleChange={handleChange} cb={cb} />
             ))}
           </div>
           <div className="flex mt-6 my-4 flex-row items-center w-full text-color-dark gap-3">
@@ -348,12 +479,7 @@ const ContentParetnsInput = () => {
           </div>
           <div className="flex-col flex w-full lg:grid lg:grid-cols-3  gap-4 gap-x-6">
             {dataIbu.map((cb, index) => (
-              <InputFormUser
-                key={index}
-                setFormData={setFormData}
-                formData={formData}
-                cb={cb}
-              />
+              <InputFormUser key={index} cb={cb} handleChange={handleChange} />
             ))}
           </div>
           <div className="flex mt-6 my-4 flex-row items-center w-full text-color-dark gap-3">
@@ -362,25 +488,20 @@ const ContentParetnsInput = () => {
           </div>
           <div className="flex-col flex w-full lg:grid lg:grid-cols-3  gap-4 gap-x-6">
             {dataWali.map((cb, index) => (
-              <InputFormUser
-                key={index}
-                setFormData={setFormData}
-                formData={formData}
-                cb={cb}
-              />
+              <InputFormUser key={index} cb={cb} handleChange={handleChange} isNoRequired={true} />
             ))}
           </div>
 
           <div className="w-full mt-5 gap-3  flex justify-end">
-            <button className="btn bg-color-primary text-color-birulaut border-color-birulaut hover:bg-color-birulaut hover:text-color-primary  shadow-md w-24 sm:h-10  h-5">
-              Sebelumnya
-            </button>
-            <button className="btn bg-color-birulaut border-color-birulaut hover:bg-color-primary text-color-primary hover:text-color-birulaut  shadow-md w-24 sm:h-10  h-5">
-              Lanjut
+            <button
+            type="submit"
+            className="btn bg-color-birulaut hover:bg-color-birulaut hover:scale-105 border-color-birulaut  text-color-primary shadow-md w-24 sm:h-10  h-5"
+            >
+              {isFill ? "Update" : "Kirim"}
             </button>
             {/* Input data end */}
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
@@ -388,14 +509,7 @@ const ContentParetnsInput = () => {
 
 export default ContentParetnsInput;
 
-export const InputFormUser = ({ cb, setFormData, formData }) => {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((dataPrev) => ({
-      ...dataPrev,
-      [name]: value,
-    }));
-  };
+export const InputFormUser = ({ cb, handleChange, isNoRequired }) => {
   return (
     <>
       {cb.type === "select" ? (
@@ -408,8 +522,10 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
             onChange={handleChange}
             name={cb.name}
             //   ref={input1}
-            className={`select ${cb.value !== "" && "capitalize"} select-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2`}
-            required
+            className={`select ${
+              cb.value !== "" && "capitalize"
+            } select-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2`}
+            required={isNoRequired ? false : true}
           >
             <option value="" disabled>
               {cb.placeholder}
@@ -440,7 +556,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
                 className={`input input-bordered ${
                   cb.disabled && "input-disabled"
                 } text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md`}
-                required
+                required={isNoRequired ? false : true}
                 disabled={cb.disabled ? true : false}
                 data-theme="light"
               />
@@ -458,7 +574,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
                 className={`input input-bordered ${
                   cb.disabled2 && "input-disabled"
                 } text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md`}
-                required
+                required={isNoRequired ? false : true}
                 disabled={cb.disabled2 ? true : false}
                 data-theme="light"
               />
@@ -479,7 +595,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
                 className={`input input-bordered ${
                   cb.disabled && "input-disabled"
                 } text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md`}
-                required
+                required={isNoRequired ? false : true}
                 disabled={cb.disabled ? true : false}
                 data-theme="light"
               />
@@ -497,7 +613,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
                 className={`input input-bordered ${
                   cb.disabled2 && "input-disabled"
                 } text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md`}
-                required
+                required={isNoRequired ? false : true}
                 disabled={cb.disabled2 ? true : false}
                 data-theme="light"
               />
@@ -512,7 +628,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
                 name={cb.name3}
                 //   ref={input1}
                 className="select select-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2"
-                required
+                required={isNoRequired ? false : true}
               >
                 <option value="" className="text-opacity-50 truncate" disabled>
                   Pilih ukuran
@@ -539,7 +655,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
               className={`input input-bordered ${
                 cb.disabled && "input-disabled"
               } text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md`}
-              required
+              required={isNoRequired ? false : true}
               disabled={cb.disabled ? true : false}
               data-theme="light"
             />
@@ -557,7 +673,7 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
             value={cb.value}
             placeholder={cb.placeholder}
             className="textarea textarea-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full min-h-28 lg:min-h-16 mt-2 text-md "
-            required
+            required={isNoRequired ? false : true}
           />
         </div>
       )}

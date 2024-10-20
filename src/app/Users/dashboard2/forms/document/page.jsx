@@ -1,45 +1,41 @@
-import ConstentDashFull from "@/components/Content/ConstentDashFull";
-import ContentDash from "@/components/Content/ContentDash";
-import ContentDash2 from "@/components/Content/ContentDash2";
 import ContentDashFiles from "@/components/Content/ContentDashFiles";
 import ContentDashMobile from "@/components/Content/ContentDashMobile";
-import Navbar from "@/components/Navbar";
 import NavbarMobile from "@/components/utils/NavbarMobile";
 import NavbarSamping from "@/components/utils/NavbarSamping";
-import NavbarWelcome from "@/components/utils/NavbarWelcome";
 import authUserSession from "@/models/libs/auth-libs";
 import prisma from "@/models/libs/prisma";
-import { redirect } from "next/navigation";
 
 const Page = async () => {
-  // const user = await authUserSession();
-  // const data = await prisma.account.findFirst({
-  //   where: { email: user?.email },
-  // });
-  // const updateData = await prisma.calonMahasiswa.findFirst({
-  //   where: {email: user?.email}
-  // })
-  
-  const user = {
-    user: {
-      email: "farras.akhirio.ramadhan.204@gmail.com",
-      name: "Farras Akra",
-      id: 123213124124
-    }
+  const user = await authUserSession();
+  const data = await prisma.account.findFirst({
+    where: { email: user?.email },
+  });
+
+  const dOrtu = await prisma.data_orangtua.findFirst({
+    where: {id_user: data?.id}
+  })
+
+  const dSiswa = await prisma.data_calon_siswa.findFirst({
+    where: {id_user: data?.id}
+  })
+  const dDocs = await prisma.data_dokumen.findFirst({
+    where: {id_user: data?.id}
+  })
+  const dMaps = await prisma.data_alamat_siswa.findFirst({
+    where: {id_user: data?.id}
+  })
+
+  const dFull = {
+    dOrtu,
+    dMaps,
+    dSiswa,
+    dDocs,
   }
 
-
-  // if (!user) {
-  //   // redirect("/");
-  // } else {
-  //   if (!data) {
-  //     redirect("/Register");
-  //   }
-  // }
   return (
     <>
       <NavbarSamping />
-      <ContentDashFiles />
+      <ContentDashFiles data={data} isFill={dDocs} dFull={dFull} />
       <div className="hidden">
       <ContentDashMobile />
       </div>

@@ -1,41 +1,32 @@
 "use client";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfinity } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import best_program from "@/models/data/best_program";
 
-  // masukin data disini
-const data = [
-  'Halim',
-  'Alim',
-  'Juara',
-  'Jagoan',
-  'Sangar',
-  'Smart',
-  'Berprestasi',
-  'Disegani',
-  'Strong'
-]
+// masukin data disini
 const Badge = () => {
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextSlide = () => {
-    const newIndex = (currentImageIndex + 3) % data.length;
+    const newIndex = (currentImageIndex + 3) % best_program.data.length;
     setCurrentImageIndex(newIndex);
   };
 
   const prevSlide = () => {
-    const newIndex = (currentImageIndex - 3 + data.length) % data.length;
+    const newIndex =
+      (currentImageIndex - 3 + best_program.data.length) %
+      best_program.data.length;
     setCurrentImageIndex(newIndex);
   };
   const nextSlideSm = () => {
-    const newIndex = (currentImageIndex + 1) % data.length;
+    const newIndex = (currentImageIndex + 1) % best_program.data.length;
     setCurrentImageIndex(newIndex);
   };
 
   const prevSlideSm = () => {
-    const newIndex = (currentImageIndex - 1 + data.length) % data.length;
+    const newIndex =
+      (currentImageIndex - 1 + best_program.data.length) %
+      best_program.data.length;
     setCurrentImageIndex(newIndex);
   };
 
@@ -45,9 +36,23 @@ const Badge = () => {
         <button onClick={prevSlide} className="max-xl:hidden btn btn-xs">
           ❮
         </button>
-        <div className="max-xl:hidden"><Cards page={currentImageIndex} bag={1} capt={"Religius"} /></div>
-        <div className=""><Cards page={(currentImageIndex + 1) % data.length} bag={2} capt={"Halim"} /></div>
-        <div className="max-xl:hidden"><Cards page={(currentImageIndex + 2) % data.length} bag={3} capt={"Juara"} /></div>
+        <div className="flex gap-8">
+        <div className="max-xl:hidden">
+          <Cards page={currentImageIndex}  />
+        </div>
+        <div className="">
+          <Cards
+            page={(currentImageIndex + 1) % best_program.data.length}
+            
+          />
+        </div>
+        <div className="max-xl:hidden">
+          <Cards
+            page={(currentImageIndex + 2) % best_program.data.length}
+            
+          />
+        </div>
+        </div>
 
         <button onClick={nextSlide} className="max-xl:hidden btn btn-xs">
           ❯
@@ -68,35 +73,17 @@ const Badge = () => {
 
 export default Badge;
 
-const Cards = ({ page, bag, capt }) => {
+const Cards = ({ page }) => {
+  console.log("🚀 ~ Cards ~ page:", page);
   return (
     <>
-      {/* pakai border warna */}
-      {/* {bag === 1 ? (
-        <div className="card w-96 bg-color-primary shadow-lg shadow-color-birulaut border-4 border-color-birulaut  border-solid">
-          <div className="card-body ">
-            <div className="card-actions justify-center mb-5">
-              <FontAwesomeIcon icon={faInfinity} className="h-7" />
-            </div>
-            <p>0{page} We are using cookies for no reason.</p>
-          </div>
-        </div>
-      ) : (<div className="card w-96 bg-color-primary shadow-xl border-t-2 hover:border-2 hover:border-color-birulaut  border-t-color-secondary border-opacity-30 border-solid">
-          <div className="card-body ">
-            <div className="card-actions justify-center mb-5">
-              <FontAwesomeIcon icon={faInfinity} className="h-7" />
-            </div>
-            <p>0{page} We are using cookies for no reason.</p>
-          </div>
-        </div>
-      )} */}
-      <div className="card w-72 sm:w-96 bg-color-primary shadow-xl border-2 border-t-2 hover:border-2 hover:border-color-birulaut  border-color-secondary border-opacity-0 border-t-opacity-30  border-solid">
+      <div className="card w-72 sm:w-96 h-full bg-color-primary shadow-xl border-2 border-t-2 hover:border-2 hover:border-color-birulaut  border-color-secondary border-opacity-0 border-t-opacity-30  border-solid">
         <div className="card-body ">
           <div className="card-actions justify-center mb-5">
-            <FontAwesomeIcon icon={faInfinity} className="h-7" />
+            {best_program.data[page].icon}
           </div>
           <p className="text-center font-bold text-xl">
-            {page} {data[page]}
+            {best_program.data[page].name}
           </p>
         </div>
       </div>

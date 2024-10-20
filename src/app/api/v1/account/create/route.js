@@ -1,8 +1,8 @@
 import prisma from "@/models/libs/prisma";
 
 export async function POST(request){
-    const { nama, email, nomor, jalur, password } = await request.json()
-    const data = { nama, email, nomor, jalur, password }
+    const { nama, email, nomor, jenjang ,jalur } = await request.json()
+    const data = { nama, email, nomor, jenjang ,jalur }
 
     const createAccount = await prisma.account.create({data})
 

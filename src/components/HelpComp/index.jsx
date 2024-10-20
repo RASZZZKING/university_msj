@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Footer from "../Footer";
 import PopUpInvoice from "../PopUpInvoice";
 
-const HelpComp = () => {
+const HelpComp = ({pendaftar}) => {
   const [steps, setSteps] = useState(3);
   const [popUp, setPopUp] = useState(false);
   const [jenjangS, setJenjangs] = useState();
@@ -191,7 +191,7 @@ const HelpComp = () => {
       <div className="flex sm:gap-14 gap-2 ">
         <div className="flex flex-col gap-2">
           <p className="font-bold text-2xl sm:text-3xl md:text-4xl text-center">
-            50
+            {pendaftar}
           </p>
           <p className="sm:text-base text-xs max-sm:font-semibold text-center">
             Pendaftar
@@ -225,7 +225,7 @@ const HelpComp = () => {
     </div>
   );
   return (
-    <div className="mt-10">
+    <div className="mt-20 pt-10">
       <div className=" flex flex-col items-center  w-full px-4 sm:px-6 lg:px-12">
         <ParallaxInfo />
         <div

@@ -2,21 +2,25 @@
 import { Printer } from "@phosphor-icons/react";
 import React, { useState } from "react";
 import InfoDaftarSuccess from "../utils/InfoDaftarSuccess";
+import { useRouter } from "next/navigation";
 
-const ContentDashMLocation = () => {
+const ContentDashMLocation = ({ isFill, data, dFull }) => {
+  const router = useRouter()
   const [formData, setFormData] = useState({
-    alamat: "PPDB2020003",
-    alamat_rt: "",
-    alamat_rw: "",
-    alamat_desa: "",
-    alamat_kecamatan: "",
-    alamat_kota: "",
-    alamat_provinsi: "",
-    kode_pos: "",
-    tinggal_bersama: "",
-    jarak_kesekolah: "",
-    waktu_kesekolah: "",
-    transportasi: "",
+    id: isFill && isFill !== null ? isFill.id : "",
+    id_user: data.id,
+    alamat: isFill && isFill !== null ? isFill.alamat : "",
+    rt: isFill && isFill !== null ? isFill.rt : "",
+    rw: isFill && isFill !== null ? isFill.rw : "",
+    desa: isFill && isFill !== null ? isFill.desa : "",
+    kecamatan: isFill && isFill !== null ? isFill.kecamatan : "",
+    kota: isFill && isFill !== null ? isFill.kota : "",
+    provinsi: isFill && isFill !== null ? isFill.provinsi : "",
+    kode_pos: isFill && isFill !== null ? isFill.kode_pos : "",
+    tinggal_bersama: isFill && isFill !== null ? isFill.tinggal_bersama : "",
+    jarak_kesekolah: isFill && isFill !== null ? isFill.jarak_kesekolah : "",
+    waktu_kesekolah: isFill && isFill !== null ? isFill.waktu_kesekolah : "",
+    transportasi: isFill && isFill !== null ? isFill.transportasi : "",
   });
 
   const dataInputDaftar = [
@@ -30,35 +34,43 @@ const ContentDashMLocation = () => {
     {
       type: "number",
       title: "RT",
-      name: "alamat_desa",
+      name: "rt",
       placeholder: "RT",
-      value: formData.alamat_rt,
+      value: formData.rt,
       doubled: true,
       title2: "RW",
+      name2: "rw",
       type2: "nubmer",
       placeholder2: "RW",
-      value2: formData.alamat_rw,
+      value2: formData.rw,
     },
     {
       type: "text",
       title: "Desa",
-      name: "alamat_desa",
+      name: "desa",
       placeholder: "alamat desa",
-      value: formData.alamat_desa,
+      value: formData.desa,
     },
     {
       type: "text",
       title: "Kecamatan",
-      name: "alamat_kecamatan",
+      name: "kecamatan",
       placeholder: "alamat kecamatan",
-      value: formData.alamat_kecamatan,
+      value: formData.kecamatan,
+    },
+    {
+      type: "text",
+      title: "Kabupaten/Kota",
+      name: "kota",
+      placeholder: "alamat kabupaten / kota",
+      value: formData.kota,
     },
     {
       type: "text",
       title: "Provinsi",
-      name: "alamat_provinsi",
+      name: "provinsi",
       placeholder: "alamat provinsi",
-      value: formData.alamat_provinsi,
+      value: formData.provinsi,
     },
     {
       type: "number",
@@ -99,53 +111,6 @@ const ContentDashMLocation = () => {
     },
   ];
 
-  return (
-    <>
-      <div className=" bg-color-primary flex sm:w-full lg:ps-[14.65rem]  justify-center  py-6 sm:pt-10 lg:min-h-screen   max-lg:overflow-auto hidden-scrollbar ">
-        <div className="flex flex-col items-center max-lg:justify-center max-lg:pb-20 px-6 sm:px-9 lg:px-12 ">
-          {/* Header text start  */}
-          <div className="flex items-center ">
-            <div className="text-center text-color-dark">
-              <h1 className="text-2xl lg:text-3xl font-semibold drop-shadow-2xl">
-                Lengkapi Data Alamat!
-              </h1>
-              <p className="pb-6 pt-3 text-sm max-w-sm max-w-440 text-center ">
-                Pastikan anda memasukan data alamat dengan benar, Masukan data sebenar benarnya!
-              </p>
-            </div>
-          </div>
-          {/* Header text end */}
-          <InfoDaftarSuccess />
-          {/* Input data start  */}
-          <div className="flex-col flex lg:grid lg:grid-cols-3  gap-4 gap-x-6">
-            {dataInputDaftar.map((cb, index) => (
-              <InputFormUser
-                key={index}
-                setFormData={setFormData}
-                formData={formData}
-                cb={cb}
-              />
-            ))}
-          </div>
-
-          <div className="w-full mt-5 gap-3  flex justify-end">
-            <button className="btn bg-color-primary text-color-birulaut border-color-birulaut hover:bg-color-birulaut hover:text-color-primary  shadow-md w-24 sm:h-10  h-5">
-              Sebelumnya
-            </button>
-            <button className="btn bg-color-birulaut border-color-birulaut hover:bg-color-primary text-color-primary hover:text-color-birulaut  shadow-md w-24 sm:h-10  h-5">
-              Lanjut
-            </button>
-            {/* Input data end */}
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default ContentDashMLocation;
-
-export const InputFormUser = ({ cb, setFormData, formData }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((dataPrev) => ({
@@ -153,6 +118,139 @@ export const InputFormUser = ({ cb, setFormData, formData }) => {
       [name]: value,
     }));
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      formData.alamat.trim() === "" ||
+      formData.rt.trim() === "" ||
+      formData.rw.trim() === "" ||
+      formData.desa.trim() === "" ||
+      formData.kecamatan.trim() === "" ||
+      formData.kota.trim() === "" ||
+      formData.provinsi.trim() === "" ||
+      formData.kode_pos.trim() === "" ||
+      formData.tinggal_bersama.trim() === "" ||
+      formData.jarak_kesekolah.trim() === "" ||
+      formData.waktu_kesekolah.trim() === "" ||
+      formData.transportasi.trim() === ""
+    )
+      return Response.json({ status: 250, message: "woi ada yg kosong" });
+
+    const {
+      id,
+      id_user,
+      alamat,
+      rt,
+      rw,
+      desa,
+      kecamatan,
+      kota,
+      provinsi,
+      kode_pos,
+      tinggal_bersama,
+      jarak_kesekolah,
+      waktu_kesekolah,
+      transportasi,
+    } = formData;
+
+    const datax = {
+      id,
+      id_user,
+      alamat,
+      rt,
+      rw,
+      desa,
+      kecamatan,
+      kota,
+      provinsi,
+      kode_pos,
+      tinggal_bersama,
+      jarak_kesekolah,
+      waktu_kesekolah,
+      transportasi,
+    };
+
+    const response = await fetch(
+      isFill && isFill !== null
+        ? "/api/v1/dataAlamat/update"
+        : "/api/v1/dataAlamat/create",
+      {
+        method: "POST",
+        body: JSON.stringify(datax),
+      }
+    );
+    const showData = await response.json();
+    console.log("🚀 ~ handleSubmit ~ showData:", showData);
+    if(showData.status === 200){
+      alert("Data berhasil diupload")
+      dFull.dSiswa === null ? router.push("/Users/dashboard2/forms/student") : dFull.dOrtu === null ? router.push("/Users/dashboard2/forms/parents")  :  dFull.dDocs === null ? router.push("/Users/dashboard2/forms/document")  : router.refresh()
+    } 
+      
+  };
+
+  return (
+    <>
+      <div className=" bg-color-primary flex sm:w-full lg:ps-[18rem] lg:px-5  justify-center  py-6 sm:pt-10 lg:min-h-screen   max-lg:overflow-auto hidden-scrollbar ">
+        <form method="post" action={""} onSubmit={handleSubmit} className="flex flex-col items-center max-lg:justify-center max-lg:pb-20 px-6 sm:px-9 lg:px-12 ">
+          {/* Header text start  */}
+          <InfoDaftarSuccess isFill={isFill} />
+          <div className="flex items-center justify-center w-full relative max-lg:mt-7 ">
+            <div className="absolute flex justify-between w-full max-lg:hidden">
+              <button className={`btn ${
+                  isFill && isFill !== null
+                    ? isFill.status === "Diterima"
+                      ? "btn-success text-success"
+                      : isFill.status === "Pending" &&
+                        "btn-warning text-warning"
+                    : "btn-error text-error"
+                } hover:bg-opacity-50 bg-opacity-25  shadow-md btn-sm  h-5`}>
+                <p className=" whitespace-nowrap text-nowrap">
+                {isFill ? isFill.status : "Belum Isi Form"}
+                </p>
+              </button>
+              <button className="btn btn-primary flex gap-1  bg-opacity-20 hover:bg-opacity-50 text-primary hover:text-color-birulaut  shadow-md w-24 ">
+                <Printer size={26} />
+                <p>Print</p>
+              </button>
+            </div>
+            <div className="text-center text-color-dark">
+              <h1 className="text-2xl lg:text-3xl font-semibold drop-shadow-2xl">
+                Lengkapi Data Alamat!
+              </h1>
+              <p className="pb-6 pt-3 text-sm max-w-sm max-w-440 text-center ">
+                Pastikan anda memasukan data alamat dengan benar, Masukan data
+                sebenar benarnya!
+              </p>
+            </div>
+          </div>
+          {/* Header text end */}
+          {/* Input data start  */}
+          <div className="flex-col flex lg:grid lg:grid-cols-3  gap-4 gap-x-6">
+            {dataInputDaftar.map((cb, index) => (
+              <InputFormUser key={index} cb={cb} handleChange={handleChange} />
+            ))}
+          </div>
+
+          <div className="w-full mt-5 gap-3  flex justify-end">
+            <button
+              type="submit"
+              className="btn bg-color-birulaut hover:bg-color-birulaut hover:scale-105 border-color-birulaut  text-color-primary shadow-md w-24 sm:h-10  h-5"
+            >
+                            {isFill ? "Update" : "Kirim"}
+
+            </button>
+            {/* Input data end */}
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default ContentDashMLocation;
+
+export const InputFormUser = ({ cb, handleChange }) => {
   return (
     <>
       {cb.type === "select" ? (

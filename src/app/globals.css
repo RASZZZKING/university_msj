@@ -2,6 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+.fadeIn3 {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+  -webkit-animation: fadeIn 0.3s ease-in-out forwards;
+}
+.fadeOut {
+  opacity: 1;
+  animation: fadeOut 0.3s ease-in-out forwards;
+  -webkit-animation: fadeOut 0.3s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.nav-sticky {
+  @apply bg-color-primary shadow-md p-1;
+}
+.lings {
+  @apply text-color-accent;
+}
+.napibar.nav-sticky .txxt {
+  color: #0C0C0C
+}
+.txxt{
+  color: #0C0C0CCC
+}
+.napibar.nav-sticky .actived {
+  color: black;
+  font-weight: bold;
+}
+.napibar.nav-sticky .animationss {
+  background: #000000;
+}
+.napibar.nav-sticky .menuActive:hover {
+  color: #000000;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -9,288 +58,290 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
-.hidden-scrollbar::-webkit-scrollbar{
-	display: none;
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-.hidden-scrollbar{
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+.hidden-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-.mirror-h{
-	-moz-transform: scale(-1, 1);
--webkit-transform: scale(-1, 1);
--o-transform: scale(-1, 1);
--ms-transform: scale(-1, 1);
-transform: scale(-1, 1);
+.mirror-h {
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
 }
-.aspect-89{
+.aspect-89 {
   aspect-ratio: 8/9;
 }
 
-.w-100{
-	width: 30.5rem;
+.w-100 {
+  width: 30.5rem;
 }
-.h-100{
-	height: 30.5rem;
+.h-100 {
+  height: 30.5rem;
 }
-.h-150{
-	height: 35.5rem;
+.h-150 {
+  height: 35.5rem;
 }
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 body {
-	font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-.bodaynya{
-	background-color: #dddee1;
-
+.bodaynya {
+  background-color: #dddee1;
 }
-.min-h-90vh{
-	min-height: 90vh;
+.min-h-90vh {
+  min-height: 90vh;
 }
-.max-h-90vh{
-	max-height: 90vh;
+.max-h-90vh {
+  max-height: 90vh;
 }
-.min-h-80vh{
-	min-height: 75vh;
+.min-h-80vh {
+  min-height: 75vh;
 }
-.w-90vw{
-	width: 90vw;
+.w-90vw {
+  width: 90vw;
 }
-.w-70vw{
-	width: 70vw;
+.w-70vw {
+  width: 70vw;
 }
-.max-w-80vw{
-	max-width: 75vw;
+.max-w-80vw {
+  max-width: 75vw;
 }
-.max-w-60vw{
-	max-width: 60vw;
+.max-w-60vw {
+  max-width: 60vw;
 }
-.actived{
-	color: black;
-	
-}
-.start-home{
+.actived {
   color: black;
 }
-.wrapperMenu{
-	position: relative;
-	width: 590px;
-  
-	font-size: 0;
+.start-home {
+  color: black;
 }
-.wrapperMenu .menuActive{
-	font-size: 15px;
-	text-transform: uppercase;
-	text-decoration: none;
-	line-height: 60px;
-	position: relative;
-	z-index: 1;
-	display: inline-block;
-	text-align: center;
-}
-.wrapperMenu .animationss{
-	position: absolute;
-	height: 3px;
-	bottom: 0;
-	z-index: 0;
-	background: #00000099;
-	border-radius: 8px;
-	transition: all .5s ease 0s;
-}
-.wrapperMenu .menuActive:nth-child(1){
-	width: 100px;
+.wrapperMenu {
+  position: relative;
+  width: 690px;
 
+  font-size: 0;
+}
+.wrapperMenu .menuActive {
+  font-size: 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 60px;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
 
+  text-align: center;
 }
-.wrapperMenu  .menuActive:nth-child(1):hover~.animationss{
-	width: 100px;
-	left: 0;
+.wrapperMenu .menuActive:hover {
+  color: #000000;
 }
-.wrapperMenu .menuActive:nth-child(2){
-	width: 110px;
+.wrapperMenu .animationss {
+  position: absolute;
+  height: 3px;
+  bottom: 0;
+  z-index: 0;
+  background: #ffffff99;
+  border-radius: 8px;
+  transition: all 0.5s ease 0s;
 }
-.wrapperMenu .menuActive:nth-child(2):hover~.animationss{
-	width: 110px;
+.wrapperMenu .menuActive:nth-child(1) {
+  width: 100px;
+}
+.wrapperMenu .menuActive:nth-child(1):hover ~ .animationss {
+  width: 100px;
+  left: 0;
+}
+.wrapperMenu .menuActive:nth-child(2) {
+  width: 110px;
+}
+.wrapperMenu .menuActive:nth-child(2):hover ~ .animationss {
+  width: 110px;
 
-	left: 100px;
+  left: 100px;
 }
-.wrapperMenu .menuActive:nth-child(3){
-	width: 100px;
+.wrapperMenu .menuActive:nth-child(3) {
+  width: 100px;
 }
-.wrapperMenu .menuActive:nth-child(3):hover~.animationss{
-	width: 100px;
-	left: 210px;
+.wrapperMenu .menuActive:nth-child(3):hover ~ .animationss {
+  width: 100px;
+  left: 210px;
 }
-.wrapperMenu .menuActive:nth-child(4){
-	width: 160px;
+.wrapperMenu .menuActive:nth-child(4) {
+  width: 160px;
 }
-.wrapperMenu .menuActive:nth-child(4):hover~.animationss{
-	width: 160px;
-	left: 310px;
+.wrapperMenu .menuActive:nth-child(4):hover ~ .animationss {
+  width: 160px;
+  left: 310px;
 }
-.wrapperMenu .menuActive:nth-child(5){
-	width: 120px;
+.wrapperMenu .menuActive:nth-child(5) {
+  width: 120px;
 }
-.wrapperMenu .menuActive:nth-child(5):hover~.animationss{
-	width: 120px;
-	left: 470px;
+.wrapperMenu .menuActive:nth-child(5):hover ~ .animationss {
+  width: 120px;
+  left: 470px;
 }
-
+.wrapperMenu .menuActive:nth-child(6) {
+  width: 100px;
+}
+.wrapperMenu .menuActive:nth-child(6):hover ~ .animationss {
+  width: 100px;
+  left: 590px;
+}
 
 @media screen and (min-width: 1300px) and (max-width: 1640px) {
-	.pad12{
-		padding-right: 100px;
-	}
+  .pad12 {
+    padding-right: 100px;
+  }
 }
 @media screen and (min-width: 1200px) and (max-width: 1300px) {
-	.pad12{
-		padding-right: 150px;
-	}
+  .pad12 {
+    padding-right: 150px;
+  }
 }
 @media screen and (min-width: 770px) and (max-width: 1200px) {
-	.flxLow{
-		flex-direction: column-reverse;
-	}
-	.matOp{
-		margin-top: 25px
-	}
+  .flxLow {
+    flex-direction: column-reverse;
+  }
+  .matOp {
+    margin-top: 25px;
+  }
 }
 
 @media screen and (max-width: 380px) {
-	.cardmini {
-		width: 14rem;
-		max-height: 10rem;
-	}
-	.cardBohay{
-		padding: 12px;
-	}
-	.inptOk{
-		margin-top: -7px;
-		height: 1.5rem;
-	}
-	.cardTulis{
-		font-size: .4rem;
-		margin-top: -6px;
-	}
-	.cardBtn {
-		height: 1.5rem/* 24px */;
-		min-height: 1.5rem/* 24px */;
-		padding-left: 0.5rem/* 8px */;
-		padding-right: 0.5rem/* 8px */;
-		font-size: 0.75rem/* 12px */;
-		margin-top: -12px;
-	}
-	.hidan{
-		display: none;
-	}
+  .cardmini {
+    width: 14rem;
+    max-height: 10rem;
+  }
+  .cardBohay {
+    padding: 12px;
+  }
+  .inptOk {
+    margin-top: -7px;
+    height: 1.5rem;
+  }
+  .cardTulis {
+    font-size: 0.4rem;
+    margin-top: -6px;
+  }
+  .cardBtn {
+    height: 1.5rem /* 24px */;
+    min-height: 1.5rem /* 24px */;
+    padding-left: 0.5rem /* 8px */;
+    padding-right: 0.5rem /* 8px */;
+    font-size: 0.75rem /* 12px */;
+    margin-top: -12px;
+  }
+  .hidan {
+    display: none;
+  }
 }
-.maticon{
-	margin-top: 4.4px;
+.maticon {
+  margin-top: 4.4px;
 }
 @media screen and (min-width: 380px) and (max-width: 500px) {
-	.cardmini {
-		width: 14rem;
-		max-height: 13rem;
-	}
-	.cardBohay{
-		padding: 1rem
-		;
-	}
-	.inptOk{
-		margin-top: -7px;
-		height: 2.25rem;
-	}
-	.cardTulis{
-		font-size: .4rem;
-		margin-top: -6px;
-	}
-	.cardBtn {
-		height: 1.5rem/* 24px */;
-		min-height: 1.5rem/* 24px */;
-		padding-left: 0.5rem/* 8px */;
-		padding-right: 0.5rem/* 8px */;
-		font-size: 0.75rem/* 12px */;
-		margin-top: -12px;
-	}
-	.hidan{
-		display: none;
-	}
+  .cardmini {
+    width: 14rem;
+    max-height: 13rem;
+  }
+  .cardBohay {
+    padding: 1rem;
+  }
+  .inptOk {
+    margin-top: -7px;
+    height: 2.25rem;
+  }
+  .cardTulis {
+    font-size: 0.4rem;
+    margin-top: -6px;
+  }
+  .cardBtn {
+    height: 1.5rem /* 24px */;
+    min-height: 1.5rem /* 24px */;
+    padding-left: 0.5rem /* 8px */;
+    padding-right: 0.5rem /* 8px */;
+    font-size: 0.75rem /* 12px */;
+    margin-top: -12px;
+  }
+  .hidan {
+    display: none;
+  }
 }
 @media screen and (min-width: 330px) and (max-width: 500px) {
-	.tinggiSesuai {
-		min-height: 16rem;
-		max-height: 16rem;
-	}
-	.textBerubah{
-		padding-left: 1.75rem;
-		padding-right: 1.75rem;
-		font-size: .75rem;
-		line-height: 1rem;
-	}
-	.ubahBtn {
-		height: 1.5rem;
-		min-height: 1.5rem;
-		padding-left: 0.5rem;
-		padding-right: 0.5rem;
-		font-size: 0.75rem;
-		font-size: 0.75rem/* 12px */;
-		line-height: 1rem
-	}
-	.tulisKecil{
-		line-height: 1rem;
-		font-size: .75rem;
-	}
-	.pecex2{
-		padding: 0 .5rem;
-	}
+  .tinggiSesuai {
+    min-height: 16rem;
+    max-height: 16rem;
+  }
+  .textBerubah {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  .ubahBtn {
+    height: 1.5rem;
+    min-height: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.75rem;
+    font-size: 0.75rem /* 12px */;
+    line-height: 1rem;
+  }
+  .tulisKecil {
+    line-height: 1rem;
+    font-size: 0.75rem;
+  }
+  .pecex2 {
+    padding: 0 0.5rem;
+  }
 }
 @media screen and (max-width: 330px) {
-	
-	.tinggiSesuai {
-		min-height: 13rem;
-		max-height: 13rem;
-	}
-	.textBerubah{
-		padding: 0 1.75rem;
-		font-size: .75rem;
-		line-height: 1rem;
-	}
-	.ubahBtn {
-		height: 1.5rem;
-		min-height: 1.5rem;
-		padding-left: 0.5rem;
-		padding-right: 0.5rem;
-		font-size: 0.75rem;
-		font-size: 0.75rem/* 12px */;
-		line-height: 1rem
-	}
-	.tulisKecil{
-		line-height: 1rem;
-		font-size: .75rem;
-	}
-	.pecex2{
-		padding: 0 .5rem;
-	}
+  .tinggiSesuai {
+    min-height: 13rem;
+    max-height: 13rem;
+  }
+  .textBerubah {
+    padding: 0 1.75rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  .ubahBtn {
+    height: 1.5rem;
+    min-height: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.75rem;
+    font-size: 0.75rem /* 12px */;
+    line-height: 1rem;
+  }
+  .tulisKecil {
+    line-height: 1rem;
+    font-size: 0.75rem;
+  }
+  .pecex2 {
+    padding: 0 0.5rem;
+  }
 }
-@media screen and (min-width:381px) and (max-width: 500px) {
-	.cardmini {
-		width: 16rem;
-	}
-	
+@media screen and (min-width: 381px) and (max-width: 500px) {
+  .cardmini {
+    width: 16rem;
+  }
 }
 @media screen and (max-width: 440px) {
-	.max-w-440{
-		max-width: 20rem;
-	}
+  .max-w-440 {
+    max-width: 20rem;
+  }
 }
 @media screen and (max-width: 380px) {
-	.max-w-440{
-		max-width: 16rem;
-	}
+  .max-w-440 {
+    max-width: 16rem;
+  }
 }

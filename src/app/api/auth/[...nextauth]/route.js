@@ -9,6 +9,17 @@ export const authOption = {
         })
     ],
     secret: process.env.NEXTAUTH_SECRET,
+    callbacks: {
+        async redirect({ url, baseUrl }) {
+            if (url === "api/auth/signin"){
+                return "/Register";
+            }
+            if (url === "api/auth/signout"){
+                return "/";
+            }
+            return baseUrl;
+        },
+    }
 }
 
 const handler = NextAuth(authOption)

@@ -1,8 +1,9 @@
 "use client";
 import { usePathname } from "next/navigation";
 import React, { useRef, useState } from "react";
+import { toRupiah } from "to-rupiah";
 
-const ContentPaymentMobile = () => {
+const ContentPaymentMobile = ({dataBiaya}) => {
   const path = usePathname();
   const totalBayar = useRef();
   const tanggalBayar = useRef();
@@ -98,7 +99,7 @@ const ContentPaymentMobile = () => {
       </div>
     </div>
   );
-  const dataBiaya = {
+  const dataBiaya2 = {
     data: [
       {
         name: "SPP",
@@ -130,7 +131,7 @@ const ContentPaymentMobile = () => {
     <div className="w-full flex flex-col gap-1 bg-color-primary p-4 shadow-xl rounded-lg">
       <div className="flex justify-between items-center pb-1">
         <div className="flex flex-col justify-center">
-          <div className="font-semibold text-lg">{cb.name}</div>
+          <div className="font-semibold text-lg">{cb.nama_biaya}</div>
         </div>
         <div
           className={`text-sm ${
@@ -148,11 +149,11 @@ const ContentPaymentMobile = () => {
       <div className="flex flex-col gap-1.5">
         <div className="flex justify-between">
           <p className="text-xs">Nama Biaya</p>
-          <p className="text-xs">{cb.name}</p>
+          <p className="text-xs">{cb.nama_biaya}</p>
         </div>
         <div className="flex justify-between">
           <p className="text-xs">Jumlah Biaya</p>
-          <p className="text-xs">Rp {cb.nominal}</p>
+          <p className="text-xs">{toRupiah(cb.jumlah_biaya, {dot: "." ,floatingPoint: 0}   )}</p>
         </div>
         <div className="flex justify-between">
           <p className="text-xs">Kurang</p>
@@ -184,42 +185,47 @@ const ContentPaymentMobile = () => {
           <h2 className="card-title text-xl">Tambah Pembayaran</h2>
           <div className="w-full">
             <span className="label-text text-color-dark font-extralight opacity-70 w-full text-base">
+              {"Nama Pembayaran"}
+            </span>
+            <select
+              name={"jenis_pembayaran"}
+
+              className="select select-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2"
+              required
+            >
+              <option value="" checked defaultChecked disabled>
+                Jenis pendaftaran
+              </option>
+              {dataBiaya.map((cb,i)=>
+              (
+                <option value={cb.nama_biaya} key={i}>
+                  {cb.nama_biaya}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="w-full">
+            <span className="label-text text-color-dark font-extralight opacity-70 w-full text-base">
               {"Jumlah Pembayaran"}
             </span>
             <input
               // onChange={()=>handleTab(1)}
               name={"name"}
-              type={"text"}
+              type={"number"}
               ref={totalBayar}
-              // value={value}
-              placeholder={"contoh: 5.000.000"}
+              placeholder={"contoh: 5000000"}
               className="input input-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md"
               required
             />
           </div>
-          <div className="w-full">
-            <span className="label-text text-color-dark font-extralight opacity-70 w-full text-base">
-              {"Tanggal Pembayaran"}
-            </span>
-            <input
-              ref={tanggalBayar}
-              // onChange={()=>handleTab()}
-              name={"names"}
-              type={"date"}
-              // value={value}
-              className="input input-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md"
-              required
-            />
-          </div>
+          
           <div className="w-full">
             <span className="label-text text-color-dark font-extralight opacity-70 w-full text-base">
               {"Bukti Pembayaran"}
             </span>
             <input
-              // onChange={()=>handleTab()}
               name={"namesz"}
               type={"file"}
-              // value={value}
               className="file-input file-input-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md"
               required
             />
@@ -390,8 +396,11 @@ const ContentPaymentMobile = () => {
       <div className=" flex flex-col items-center pb-20 w-full px-6 ">
         {/* Header text start  */}
         <div
-          className={`w-full  flex flex-col  gap-3 justify-center ${(path !== "/Users/payment/paymentdata" &&
-          path !== "/Users/payment") && "h-full"}`}
+          className={`w-full  flex flex-col  gap-3 justify-center ${
+            path !== "/Users/payment/paymentdata" &&
+            path !== "/Users/payment" &&
+            "h-full"
+          }`}
           data-theme="light"
         >
           {(path === "/Users/payment/paymentdata" ||
@@ -417,12 +426,12 @@ const ContentPaymentMobile = () => {
             </>
           )}
           <div className="max-sm:flex max-sm:flex-col justify-center items-center gap-3 sm:grid sm:grid-cols-2">
-            {path === "/Users/payment" &&
+            {path === "/Users/payment/paymentdata" &&
               dataPembayaran.data.map((cb, index) => (
                 <TablePembayaranMobile cb={cb} key={index} />
               ))}
-            {path === "/Users/payment/paymentdata" &&
-              dataBiaya.data.map((cb, index) => (
+            {path === "/Users/payment" &&
+              dataBiaya.map((cb, index) => (
                 <TableBiayaMobile cb={cb} key={index} />
               ))}
           </div>

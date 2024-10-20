@@ -1,55 +1,54 @@
 import Badge from "@/components/Badge";
-import Carousel from "@/components/Carousel";
 import Carousel2 from "@/components/Carousel/Carousel2";
 import CuriculumCard from "@/components/CuriculumCard";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import News from "@/components/NewsPage";
 import ParalaxReview from "@/components/ParalaxReview";
 import ReviewPeople from "@/components/ReviewPeople";
 import VideosPage from "@/components/VideosPage";
 import VisiMision from "@/components/VisiMision";
 import HeadPage from "@/components/utils/HeadPage";
-import HeadPage2 from "@/components/utils/HeadPage/HeadPage2";
-import Image from "next/image";
 import React from "react";
-import "aos"
+import "aos";
 import authUserSession from "@/models/libs/auth-libs";
-import { redirect } from "next/dist/server/api-utils";
 import prisma from "@/models/libs/prisma";
+import News from "@/components/NewsPage";
 
-const Page = async() => {
-  // const user = await authUserSession()
-  // console.log(user);
-  // console.log(user?.email);
-  // const data = await prisma.account.findFirst({
-  //   where: { email: user?.email }
-  // })
-  const user = {
-    user: {
-      email: "farras.akhirio.ramadhan.204@gmail.com",
-      name: "Farras Akra",
-      id: 123213124124
-    }
-  }
+const Page = async () => {
+  const user = await authUserSession();
+  const data = await prisma.account.findFirst({
+    where: { email: user?.email },
+  });
   return (
     <div className="bg-white min-h-svh">
-      <Navbar user={user} hasReg={user} />
+        <Navbar user={user} hasReg={data} />
       <Carousel2 />
       <VideosPage />
       <ParalaxReview />
       <div className="-mt-1 -mb-5">
-      <HeadPage head={"Why Must Unindra?"} title={"Best Curiculum UNINDRA"} description={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores sint neque necessitatibus maiores minima ab suscipit inventore porro, amet commodi. Vel repellendus officiis, eveniet veritatis ratione sunt eos culpa natus."} />
+        <HeadPage
+          head={"Why Must Muslimah Sejati?"}
+          title={"Our Best Program"}
+          description={
+            "Program Unggulan kami menghasilkan 13 Juara dari beberapa kompetisi yang kami ikut secara kompeten, Kami merancang program ini berdasarkan pengamatan serta penelitian pengembangan anak secara mendala serta berkala."
+          }
+        />
       </div>
       <CuriculumCard />
       <Badge />
       <VisiMision />
       <div className="-mt-5">
-      <HeadPage  head={"What Others Say?"} title={"From Unindra To Others"} description={"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores sint neque necessitatibus maiores minima ab suscipit inventore porro, amet commodi. Vel repellendus officiis, eveniet veritatis ratione sunt eos culpa natus."} />
+        <HeadPage
+          head={"What Others Say?"}
+          title={"From Muslimah Sejati To Others"}
+          description={
+            "At our Islamic boarding school, we aim to nurture young Muslimahs into strong, knowledgeable, and compassionate individuals who can inspire and uplift others. By deepening your understanding of Islam and building leadership skills, you'll be prepared not just for personal success, but to become a positive influence in your community, embodying the values of a true Muslimah. Through our holistic education, you will grow into someone who can guide others, share your wisdom, and make a lasting impact."
+          }
+        />
       </div>
       <ReviewPeople />
       <News />
-      <Footer/>
+      <Footer />
     </div>
   );
 };

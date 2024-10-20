@@ -267,7 +267,7 @@ const ContentDash2 = ({ dataUser, isFill }) => {
         </div>
         <div className=" flex flex-col justify-center items-center ">
           <div className="text-center justify-center">
-            {historyInput === 0 ? inputData === -1 (
+            {historyInput === 0 && inputData === -1 ? (
               <>
                 <h1 className="text-2xl font-bold drop-shadow-2xl">
                   Yuk Lengkapi Data!

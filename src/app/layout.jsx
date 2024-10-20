@@ -4,8 +4,8 @@ import "./globals.css";
 const gabarito = Gabarito({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "MJS",
-  description: "University",
+  title: "Muslimah Sejati",
+  description: "Pondok Pesantren Muslimah Sejati Tambun Selatan Tridayasakti",
 };
 
 export default function RootLayout({ children }) {

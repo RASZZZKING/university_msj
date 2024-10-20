@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 
 
 const ContentReg = ({user}) => {
+
+
     const countToken = user ? 1 : 0
   const [regPage, setRegPage] = useState(countToken);
     const regInput = useRef();
@@ -20,6 +22,7 @@ const ContentReg = ({user}) => {
       nama: "",
       email: user?.user.email,
       nomor: "",
+      jenjang: "",
       jalur: "",
       password: "",
       password2: "",
@@ -99,10 +102,36 @@ const ContentReg = ({user}) => {
 
 
         setTimeout(() => {
-          route.push("/Users/dashboard");
+          route.push("/Users/dashboard2");
         }, 2000);
       }
     };
+
+
+    const handleDaftar = async(e) => {
+      e.preventDefault()
+      if (
+        formData.nama.trim() === "" ||
+        formData.nomor.trim() === "" ||
+        formData.jenjang.trim() === "" ||
+        formData.jalur.trim() === "" 
+      ) return alert("Data tidak boleh kosong")
+
+      const {nama,nomor,jenjang,jalur,email} = formData
+      const data = {nama,nomor,jenjang,jalur,email}
+
+      const response = await fetch(
+        "/api/v1/account/create", {
+          method: "POST",
+          body: JSON.stringify(data)
+        }
+      )
+      const showIt = await response.json()
+      console.log("🚀 ~ handleDaftar ~ showIt:", showIt)
+      alert("Akun behasil terdaftar, silahkan isi formulir")
+      route.push("/Users/dashboard2/forms/student");
+    }
+
     return (
       <>
         <div className={`flex ${alertState} ${dangerState} justify-center`}>
@@ -153,12 +182,14 @@ const ContentReg = ({user}) => {
           className="bg-color-primary w-full min-h-svh  flex  justify-around items-center"
           data-theme="light"
         >
+          <div className="py-10 bg-color-primary shadow-xl max-xl:hidden flex-none rounded-xl">
           <Image
-            src={"/../../favicon.ico"}
+            src={"/logo/register-ai.png"}
             height={1000}
             width={1000}
-            className="aspect-square h-96 w-96 max-xl:hidden flex-none rounded-xl object-cover"
+            className="aspect-video w-[30rem]  object-scale-down"
           />
+          </div>
           <div className=" flex flex-col justify-center items-center ">
             <div className="text-center justify-center">
               <h1 className="text-5xl font-bold drop-shadow-2xl">
@@ -169,17 +200,6 @@ const ContentReg = ({user}) => {
               </p>
               <div className="flex  justify-center pb-6 text-sm max-w-sm max-w-440">
                 <p>Jalur Pendaftaran</p>
-                {/* <FontAwesomeIcon
-                icon={faCircleInfo}
-                style={{
-                  "--fa-primary-color": "#ffffff",
-                  "--fa-secondary-color": "#063465",
-                  "--fa-secondary-opacity": "1",
-                }}
-                height={1000}
-                width={1000}f
-                className="w-3.5 h-3.5 maticon cursor-pointer ms-1 relative z-10"
-              /> */}
                 <div className="dropdown dropdown-left dropdown-bottom  dropdown-hover">
                   <div
                     tabIndex={0}
@@ -207,14 +227,10 @@ const ContentReg = ({user}) => {
                   >
                     <div tabIndex={0} className="card-body ">
                       <h2 className="card-title text-base">
-                        6 Jalur Pendaftaran
+                        2 Jalur Pendaftaran
                       </h2>
-                      <p>Here is a description!</p>
-                      <p>Here is a description!</p>
-                      <p>Here is a description!</p>
-                      <p>Here is a description!</p>
-                      <p>Here is a description!</p>
-                      <p>Here is a description!</p>
+                      <p>Normal</p>
+                      <p>Beasiswa Yatim Dhuafa</p>
                     </div>
                   </div>
                 </div>
@@ -261,6 +277,27 @@ const ContentReg = ({user}) => {
                     <div className="form-control">
                       <label className="label ">
                         <span className="label-text text-color-dark font-semibold">
+                          Jenjang Pendidikan
+                        </span>
+                      </label>
+                      <select
+                        value={formData.jenjang}
+                        onChange={handleChange}
+                        name="jenjang"
+                        ref={regInput}
+                        className="select select-bordered w-full max-w-xs"
+                        required
+                      >
+                        <option value="" disabled>
+                          pilih jenjang pendidikan
+                        </option>
+                        <option value="SMPIT">Sekolah Menengah Pertama Islam Terpadu</option>
+                        <option value="SMAIT">Sekolah Menengah Atas Islam Terpadu</option>
+                      </select>
+                    </div>
+                    <div className="form-control">
+                      <label className="label ">
+                        <span className="label-text text-color-dark font-semibold">
                           Jalur Pendaftaran
                         </span>
                       </label>
@@ -275,8 +312,8 @@ const ContentReg = ({user}) => {
                         <option value="" disabled>
                           pilih jalur
                         </option>
-                        <option value="Beasiswa">Beasiswa</option>
-                        <option value="Prestasi">Prestasi</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Beasiswa_Yatim">Beasiswa Yatim Dhuafa</option>
                       </select>
                     </div>
                   </>
@@ -356,10 +393,10 @@ const ContentReg = ({user}) => {
                   ) : null}
                   {regPage === 1 ? (
                     <button
-                      onClick={() => nextPage(regPage)}
-                      className="btn border-color-birulaut bg-color-primary text-color-birulaut hover:bg-color-gray hover:border-color-primary hover:text-color-dark"
+                      onClick={handleDaftar}
+                      className="btn bg-color-birulaut border-color-primary text-color-primary hover:scale-105 transition-all duration-75 hover:bg-color-birulaut hover:opacity-90"
                     >
-                      Next
+                      Daftar
                     </button>
                   ) : null}
                   {regPage === 2 ? (
