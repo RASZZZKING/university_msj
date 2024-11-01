@@ -9,7 +9,7 @@ import React from "react";
 const Page = async() => {
   const user = await authUserSession();
   const data = await prisma.account.findFirst({
-    where: { email: user?.email },
+    where: { email: user?.user?.email },
   });
   const dataBiaya = await prisma.data_biaya.findMany();
   const dbPembayaran = await prisma.data_pembayaran.findMany({
@@ -48,7 +48,7 @@ const Page = async() => {
   return (
     <>
       <div className="max-lg:hidden">
-        <NavbarSamping />
+      <NavbarSamping user={user?.user?.email} />
       </div>
       {/* <ContentPayment /> */}
       <ContentPaymentMobile />

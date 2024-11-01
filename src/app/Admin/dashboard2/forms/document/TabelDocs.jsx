@@ -96,49 +96,46 @@ const TabelDocs = ({ datax }) => {
               )
               .map((cb, i) => {
                 const showImg = (isi) => {
-                    setIsVisible(true)
+                  setIsVisible(true);
                   setUrl(`/document/${isi}`);
                 };
-                const handleAccept = async(e) => {
-                    e.preventDefault()
-                    const id_user = cb.id
-                    const status = "Diterima"
-                    const data = {
-                        id_user,
-                        status
-                    }
-                    console.log("🚀 ~ handleAccept ~ id_user:", id_user)
-                    const response = await fetch(
-                        "/api/v1/dataDocs/accept",{
-                          method: "POST",
-                          body: JSON.stringify(data)  
-                        }
-                    )
-                    const show = await response.json()
-                    console.log("🚀 ~ handleReject ~ show:", show)
-                    if(show.status === 200 ) return alert(`Data berhasil di acc`)
-                        else return alert(`Data Gagal di Acc`)
-                                    
-                  }
-                  const handleReject = async(e) => {
-                    e.preventDefault()
-                    const id_user = cb.id
-                    const status = "Ditolak"
-                    const data = {
-                        id_user,
-                        status
-                    }
-                    const response = await fetch(
-                        "/api/v1/dataDocs/reject",{
-                          method: "POST",
-                          body: JSON.stringify(data)  
-                        }
-                    )
-                    const show = await response.json()
-                    console.log("🚀 ~ handleReject ~ show:", show)
-                    if(show.status === 200 ) return alert(`Data berhasil di tolak`)
-                        else return alert(`Data Gagal di tolak`)
-                  }
+                const handleAccept = async (e) => {
+                  e.preventDefault();
+                  const id_user = cb.id;
+                  const status = "Diterima";
+                  const data = {
+                    id_user,
+                    status,
+                  };
+                  console.log("🚀 ~ handleAccept ~ id_user:", id_user);
+                  const response = await fetch("/api/v1/dataDocs/accept", {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                  });
+                  const show = await response.json();
+                  console.log("🚀 ~ handleReject ~ show:", show);
+                  if (show.status === 200) return alert(`Data berhasil di acc`);
+                  else return alert(`Data Gagal di Acc`);
+                };
+                const handleReject = async (e) => {
+                  e.preventDefault();
+                  const id_user = cb.id;
+                  const status = "Ditolak";
+                  const data = {
+                    id_user,
+                    status,
+                  };
+                  const response = await fetch("/api/v1/dataDocs/reject", {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                  });
+                  const show = await response.json();
+                  console.log("🚀 ~ handleReject ~ show:", show);
+                  if (show.status === 200)
+                    return alert(`Data berhasil di tolak`);
+                  else return alert(`Data Gagal di tolak`);
+                };
+                if(cb.data_docs === null) return
                 return (
                   <tr key={i}>
                     <th>{i + 1}</th>
@@ -152,42 +149,66 @@ const TabelDocs = ({ datax }) => {
                     </td>
                     <td>{cb.nama}</td>
                     <td>
-                      <div onClick={()=>showImg(cb.data_docs.kartu_keluarga)} className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary">
+                      <div
+                        onClick={() => showImg(cb.data_docs.kartu_keluarga)}
+                        className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary"
+                      >
                         Lihat
                       </div>
                     </td>
                     <td>
-                      <div onClick={()=>showImg(cb.data_docs.akte_kelahiran)} className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary">
+                      <div
+                        onClick={() => showImg(cb.data_docs.akte_kelahiran)}
+                        className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary"
+                      >
                         Lihat
                       </div>
                     </td>
                     <td>
-                      <div onClick={()=>showImg(cb.data_docs.ktp_orang_tua)} className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary">
+                      <div
+                        onClick={() => showImg(cb.data_docs.ktp_orang_tua)}
+                        className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary"
+                      >
                         Lihat
                       </div>
                     </td>
                     <td>
-                      <div onClick={()=>showImg(cb.data_docs.skl)} className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary">
+                      <div
+                        onClick={() => showImg(cb.data_docs.skl)}
+                        className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary"
+                      >
                         Lihat
                       </div>
                     </td>
                     <td>
-                      <div onClick={()=>showImg(cb.data_docs.ijazah)} className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary">
+                      <div
+                        onClick={() => showImg(cb.data_docs.ijazah)}
+                        className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary"
+                      >
                         Lihat
                       </div>
                     </td>
                     <td>
-                      <div onClick={()=>showImg(cb.data_docs.shun_skhun)} className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary">
+                      <div
+                        onClick={() => showImg(cb.data_docs.shun_skhun)}
+                        className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary"
+                      >
                         Lihat
                       </div>
                     </td>
                     <td>
-                      <div onClick={()=>showImg(cb.data_docs.rapor)} className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary">
+                      <div
+                        onClick={() => showImg(cb.data_docs.rapor)}
+                        className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary"
+                      >
                         Lihat
                       </div>
                     </td>
                     <td>
-                      <div onClick={()=>showImg(cb.data_docs.kartu_nisn)} className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary">
+                      <div
+                        onClick={() => showImg(cb.data_docs.kartu_nisn)}
+                        className="btn btn-xs btn-primary bg-opacity-20 hover:bg-opacity-45 text-primary"
+                      >
                         Lihat
                       </div>
                     </td>
@@ -210,10 +231,16 @@ const TabelDocs = ({ datax }) => {
                     </td>
                     <td>
                       <div className="flex gap-2 justify-center items-center">
-                        <div onClick={handleReject} className="btn btn-xs btn-error text-error border-error bg-opacity-20 hover:bg-opacity-45">
+                        <div
+                          onClick={handleReject}
+                          className="btn btn-xs btn-error text-error border-error bg-opacity-20 hover:bg-opacity-45"
+                        >
                           <X size={16} weight="bold" />
                         </div>
-                        <div onClick={handleAccept} className="btn btn-xs btn-success text-success border-success bg-opacity-20 hover:bg-opacity-45">
+                        <div
+                          onClick={handleAccept}
+                          className="btn btn-xs btn-success text-success border-success bg-opacity-20 hover:bg-opacity-45"
+                        >
                           <Check size={16} weight="bold" />
                         </div>
                       </div>
@@ -226,7 +253,7 @@ const TabelDocs = ({ datax }) => {
       </div>
       <div className="flex justify-between" data-theme="light">
         <p className="text-sm font-extralight flex justify-center items-center">
-          Showing {pagination * vall + 1} to{" "}
+          Showing {pagination * vall + (datax.length === 0 ? 0 : 1)} to{" "}
           {(pagination + 1) * vall > datax.length
             ? datax.length
             : (pagination + 1) * vall}{" "}

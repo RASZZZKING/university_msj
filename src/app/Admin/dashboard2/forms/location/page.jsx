@@ -6,7 +6,7 @@ import TabelLocs from "./TabelLocs";
 import authUserSession from "@/models/libs/auth-libs";
 
 const Page = async () => {
-    const siUser = await authUserSession()
+  const siUser = await authUserSession();
 
   const datax = await prisma.account.findMany();
 
@@ -19,20 +19,22 @@ const Page = async () => {
     const datav = await prisma.data_alamat_siswa.findFirst({
       where: { id_user: Number(id) },
     });
-    console.log("🚀 ~ Page ~ datav:", datav)
+    console.log("🚀 ~ Page ~ datav:", datav);
+    if(datav !== null ){
+      newData.push({
+        id: id,
+        nama: datax[i].nama,
+        asal_sekolah: !datay ? "-" : datay.asal_sekolah,
+        data_locs: datav,
+      });
 
-    newData.push({
-      id: id,
-      nama: datax[i].nama,
-      asal_sekolah: datay.asal_sekolah,
-      data_locs: datav,
-    });
+    }
   }
 
   return (
     <>
       <div className="max-lg:hidden">
-        <NavbarSamping user={siUser.user.email} />
+      <NavbarSamping user={siUser?.user?.email} />
       </div>
       <TabelLocs datax={newData} />
       <NavbarMobile datax={newData} />

@@ -8,7 +8,7 @@ import prisma from "@/models/libs/prisma";
 const Page = async () => {
   const user = await authUserSession();
   const data = await prisma.account.findFirst({
-    where: { email: user?.email },
+    where: { email: user?.user?.email },
   });
 
   const dOrtu = await prisma.data_orangtua.findFirst({
@@ -34,7 +34,7 @@ const Page = async () => {
 
   return (
     <>
-      <NavbarSamping />
+      <NavbarSamping user={user?.user?.email} />
       <ContentDashFiles data={data} isFill={dDocs} dFull={dFull} />
       <div className="hidden">
       <ContentDashMobile />

@@ -65,6 +65,7 @@ const ContentListSiswa = ({ datax }) => {
               <th></th>
               <th>No Pendaftaran</th>
               <th>Nama Pendaftar</th>
+              <th>Asal Sekolah</th>
               <th>
                 <div className="flex justify-center w-32">Status</div>
               </th>
@@ -86,6 +87,7 @@ const ContentListSiswa = ({ datax }) => {
                       : cb.id}
                   </td>
                   <td>{cb.nama}</td>
+                  <td>{cb.asal_sekolah}</td>
                   <td>
                     <div className="flex justify-center w-32">
                       <div className={`btn btn-xs  bg-opacity-20 

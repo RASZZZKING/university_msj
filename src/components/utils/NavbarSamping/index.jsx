@@ -20,7 +20,14 @@ const NavbarSamping = ({ user }) => {
   const isPayment = trimPath[2] === "payment";
   const isForm = trimPath[3] === "forms";
 
+  const isDocs = trimPath[4] === "document"
+  const isParents = trimPath[4] === "parents"
+  const isLocation = trimPath[4] === "location"
+  const isStudent = trimPath[4] === "student"
+
+
   const isAdmin = process.env.ADMIN === user;
+  console.log("🚀 ~ NavbarSamping ~ isAdmin:", isAdmin)
 
   const dataIcon = [
     {
@@ -71,7 +78,7 @@ const NavbarSamping = ({ user }) => {
           <Student
             size={26}
             weight={
-              path === "/Users/dashboard2/forms/student" ? "fill" : "regular"
+              isStudent ? "fill" : "regular"
             }
           />
         ),
@@ -85,7 +92,7 @@ const NavbarSamping = ({ user }) => {
           <MapPinArea
             size={26}
             weight={
-              path === "/Users/dashboard2/forms/location" ? "fill" : "regular"
+              isLocation ? "fill" : "regular"
             }
           />
         ),
@@ -99,7 +106,7 @@ const NavbarSamping = ({ user }) => {
           <Users
             size={26}
             weight={
-              path === "/Users/dashboard2/forms/parents" ? "fill" : "regular"
+              isParents ? "fill" : "regular"
             }
           />
         ),
@@ -113,7 +120,7 @@ const NavbarSamping = ({ user }) => {
           <Files
             size={26}
             weight={
-              path === "/Users/dashboard2/forms/document" ? "fill" : "regular"
+              isDocs ? "fill" : "regular"
             }
           />
         ),

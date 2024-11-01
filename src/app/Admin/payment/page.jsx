@@ -37,13 +37,13 @@ const Page = async () => {
           },
         },
       });
-      console.log("🚀 ~ Page ~ datay:", datay)
-    
-      newData.push({
-        nama:   nama,
-        id: id,
-        data_locs: datay
-      });
+      if(datay !== null){
+        newData.push({
+          nama:   nama,
+          id: id,
+          data_locs: datay
+        });
+      }
   }
 
 
@@ -62,7 +62,7 @@ const Page = async () => {
   return (
     <>
       <div className="max-lg:hidden">
-        <NavbarSamping user={siUser.user.email} />
+      <NavbarSamping user={siUser?.user?.email} />
       </div>
       <TabelPayment datax={newData} field={field} forMap={forMap} />
       <NavbarMobile datax={newData} />

@@ -195,7 +195,7 @@ const TableSt = ({ datax, field, forMap }) => {
       </div>
       <div className="flex justify-between" data-theme="light">
         <p className="text-sm font-extralight flex justify-center items-center">
-          Showing {pagination * vall + 1} to{" "}
+          Showing {pagination * vall + (datax.length === 0 ? 0 : 1)} to{" "}
           {(pagination + 1) * vall > datax.length
             ? datax.length
             : (pagination + 1) * vall}{" "}

@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 const Page = async() => {
   const user = await authUserSession()
   const data = await prisma.account.findFirst({
-    where: { email: user?.email }
+    where: { email: user?.user?.email }
   })
   if(user && data ){
     redirect("/Users/dashboard2/forms/student")

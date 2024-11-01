@@ -10,7 +10,7 @@ import React from "react";
 const Page = async () => {
   const user = await authUserSession();
   const data = await prisma.account.findFirst({
-    where: { email: user?.email },
+    where: { email: user?.user?.email },
   });
 
   const dbPembayaran = await prisma.data_pembayaran.findMany({
@@ -51,7 +51,7 @@ const Page = async () => {
   return (
     <>
       <div className="max-lg:hidden">
-        <NavbarSamping />
+      <NavbarSamping user={user?.user?.email} />
       </div>
       <div className="lg:hidden flex justify-center py-6 sm:pt-10 bg-color-primary min-h-screen text-color-dark">
         <div className=" flex flex-col items-center pb-20 w-full px-6 ">

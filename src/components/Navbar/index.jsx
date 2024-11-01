@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const Navbar2 = ({ user, hasReg }) => {
+const Navbar = ({ user, hasReg }) => {
   const sessionUser = user
     ? { title: "Logout", login: "/api/auth/signout" }
     : { title: "Login", login: "/Login" };
@@ -152,4 +152,4 @@ const Navbar2 = ({ user, hasReg }) => {
   );
 };
 
-export default Navbar2;
+export default Navbar;

@@ -6,7 +6,7 @@ import InfoDaftarSuccess from "../utils/InfoDaftarSuccess";
 import { useRouter } from "next/navigation";
 
 const ContentDashFiles = ({ data, isFill, dFull }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [url, setUrl] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [filesData, setFilesData] = useState({
@@ -30,7 +30,7 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
     shun_skhun: "",
     rapor: "",
     kartu_nisn: "",
-  })
+  });
 
   const handleChange = (e) => {
     const { name, files } = e.target;
@@ -39,12 +39,11 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
       [name]: files[0], // Set file ke state
     }));
 
-    const prv = URL.createObjectURL(files[0])
-    setPreview((prev)=>({
+    const prv = URL.createObjectURL(files[0]);
+    setPreview((prev) => ({
       ...prev,
-      [name]: prv
-    }))
-    
+      [name]: prv,
+    }));
   };
 
   const dataInput = {
@@ -113,7 +112,7 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(
+    if (
       filesData.kartu_keluarga === "" ||
       filesData.akte_kelahiran === "" ||
       filesData.ktp_orang_tua === "" ||
@@ -121,8 +120,9 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
       filesData.ijazah === "" ||
       filesData.shun_skhun === "" ||
       filesData.rapor === "" ||
-      filesData.kartu_nisn === "" 
-    ) return alert("Tidak boleh ada data yang kosong!!!")
+      filesData.kartu_nisn === ""
+    )
+      return alert("Tidak boleh ada data yang kosong!!!");
 
     const formData = new FormData();
     formData.append("id_user", filesData.id_user); // Tambahkan id_user ke formData
@@ -163,8 +163,14 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
       );
 
       if (response.ok) {
-        alert(`Dokumen berhasil di${isFill ? "update" : "upload"}`)
-        dFull.dSiswa === null ? router.push("/Users/dashboard2/forms/student") : dFull.dOrtu  === null? router.push("/Users/dashboard2/forms/parents")  : dFull.dOrtu  === null? router.push("/Users/dashboard2/forms/parents")  : router.refresh()
+        alert(`Dokumen berhasil di${isFill ? "update" : "upload"}`);
+        dFull.dSiswa === null
+          ? router.push("/Users/dashboard2/forms/student")
+          : dFull.dOrtu === null
+          ? router.push("/Users/dashboard2/forms/parents")
+          : dFull.dOrtu === null
+          ? router.push("/Users/dashboard2/forms/parents")
+          : router.refresh();
       } else {
         console.log(`Gagal meng${isFill ? "update" : "upload"} dokumen`);
       }
@@ -194,7 +200,12 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
         </div>
       </div>
       <div className="flex lg:flex sm:max-xl:bottom-0  sm:w-full sm:rounded-t-3xl lg:rounded-none sm:shadow-inner  lg:shadow-none lg:ps-[18rem] justify-center px-5 py-6 sm:pt-10  bg-color-primary  lg:min-h-screen  hidden-scrollbar ">
-        <form onSubmit={handleSubmit} method="post" action={""} className=" flex flex-col items-center gap-6 justify-center  sm:px-16">
+        <form
+          onSubmit={handleSubmit}
+          method="post"
+          action={""}
+          className=" flex flex-col items-center gap-6 justify-center  sm:px-16"
+        >
           {/* <div className="flex flex-col items-center max-lg:justify-center max-lg:pb-20 px-6 sm:px-9 lg:px-12">  sm:max-lg:px-6*/}
           {/* Header text start  */}
           <InfoDaftarSuccess isFill={isFill} />
@@ -238,10 +249,18 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
           <div className="flex-col flex sm:grid sm:grid-cols-2 lg:grid-cols-3  gap-4 gap-x-6 ">
             {dataInput.items2.map((cb, index) => (
               <InputFormUser
-                url={preview[cb.name] !== "" ? preview[cb.name] : isFill ? `/document/${cb.value}` :  null }
+                url={
+                  preview[cb.name] !== ""
+                    ? preview[cb.name]
+                    : isFill
+                    ? `/document/${cb.value}`
+                    : null
+                }
                 key={index}
                 cb={cb}
-                isHasFill={preview[cb.name] !== "" ? true : isFill ? true : false}
+                isHasFill={
+                  preview[cb.name] !== "" ? true : isFill ? true : false
+                }
                 handleSee={handleSee}
                 handleChange={handleChange}
               />
@@ -254,10 +273,18 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
           <div className="flex-col flex sm:grid sm:grid-cols-2 lg:grid-cols-3  gap-4 gap-x-6 ">
             {dataInput.items.map((cb, index) => (
               <InputFormUser
-                url={preview[cb.name] !== "" ? preview[cb.name] : isFill ? `/document/${cb.value}` :  null }
+                url={
+                  preview[cb.name] !== ""
+                    ? preview[cb.name]
+                    : isFill
+                    ? `/document/${cb.value}`
+                    : null
+                }
                 key={index}
                 cb={cb}
-                isHasFill={ preview[cb.name] !== "" ? true : isFill  ? true : false}
+                isHasFill={
+                  preview[cb.name] !== "" ? true : isFill ? true : false
+                }
                 handleSee={handleSee}
                 handleChange={handleChange}
               />
@@ -266,10 +293,9 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
           <div className="w-full mt-5 gap-3  flex justify-end">
             <button
               type="submit"
-              className="btn bg-color-birulaut hover:bg-color-birulaut hover:scale-105 border-color-birulaut  text-color-primary shadow-md w-24 sm:h-10  h-5"
+              className="btn bg-color-birulaut hover:bg-color-birulaut hover:scale-105 border-color-birulaut  text-color-primary shadow-md w-24 sm:h-10 max-lg:mb-16  h-5"
             >
-                            {isFill ? "Update" : "Kirim"}
-
+              {isFill ? "Update" : "Kirim"}
             </button>
             {/* Input data end */}
           </div>
@@ -345,7 +371,10 @@ export const Outer = ({ onClose, isVisible, url }) => {
       ${slow ? "fadeOut" : "fadeIn3"}
     top-0 z-[100] left-0  justify-center w-full h-full max-h-screen items-center`}
     >
-      <div ref={showImg} className=" w-[50vh]  flex justify-center items-center">
+      <div
+        ref={showImg}
+        className=" w-[50vh]  flex justify-center items-center"
+      >
         <img src={url} alt={url} className="rounded-md object-scale-down" />
       </div>
     </div>

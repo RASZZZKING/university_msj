@@ -19,12 +19,15 @@ const Page = async () => {
     const datav = await prisma.data_orangtua.findFirst({
       where: { id_user: Number(id) },
     });
-    newData.push({
-      id: id,
-      nama: datax[i].nama,
-      asal_sekolah: datay.asal_sekolah,
-      data_locs: datav,
-    });
+
+    if(datav !== null){
+      newData.push({
+        id: id,
+        nama: datax[i].nama,
+        asal_sekolah: !datay ? "-" : datay.asal_sekolah,
+        data_locs: datav,
+      });
+    }
     
   }
 
@@ -35,7 +38,7 @@ const Page = async () => {
   return (
     <>
       <div className="max-lg:hidden">
-        <NavbarSamping user={siUser.user.email} />
+      <NavbarSamping user={siUser?.user?.email} />
       </div>
       <TabelOT datax={newData} />
       <NavbarMobile datax={newData} />

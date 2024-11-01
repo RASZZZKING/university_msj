@@ -16,9 +16,11 @@ const Page = async () => {
     const datay = await prisma.data_calon_siswa.findFirst({
       where: { id_user: Number(id) },
     });
-    newData.push({
-      data_locs: datay,
-    });
+    if(datay !== null){
+      newData.push({
+        data_locs: datay,
+      });
+    }
   }
 
   const datE = await prisma.$queryRaw`DESCRIBE data_calon_siswa`
@@ -31,7 +33,7 @@ const Page = async () => {
   return (
     <>
       <div className="max-lg:hidden">
-        <NavbarSamping user={siUser.user.email} />
+      <NavbarSamping user={siUser?.user?.email} />
       </div>
       <TableSt datax={newData} field={field} forMap={forMap} />
       <NavbarMobile datax={newData} />
