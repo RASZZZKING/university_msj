@@ -6,11 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from "next/navigation";
+import { Outer } from "./ContentDashFiles";
 
 
 const ContentReg = ({user}) => {
-
-
+  
+  const [url,setUrl] = useState()
+  const [isOpen,setIsOpen] = useState(false)
     const countToken = user ? 1 : 0
   const [regPage, setRegPage] = useState(countToken);
     const regInput = useRef();
@@ -18,18 +20,25 @@ const ContentReg = ({user}) => {
     const [alertState, setAlertState] = useState("hidden");
     const [dangerState, setDangerState] = useState("hidden");
     //state
-    const [formData, setFormData] = useState({
+    const [handleData, setHandleData] = useState({
       nama: "",
       email: user?.user.email,
       nomor: "",
       jenjang: "",
       jalur: "",
+      bayar_formulir: "",
       password: "",
       password2: "",
     });
   
     //func
-  
+    const handleSee = (urll) => {
+      setUrl(urll);
+      setIsOpen(true);
+    };
+    const onCLose = () => {
+      setIsOpen(false);
+    };
     const nextPage = (params) => {
       if (params !== 0) {
         const keyword = regInput.current.value;
@@ -37,9 +46,9 @@ const ContentReg = ({user}) => {
       }
       if (regPage === 1) {
         if (
-          formData.nama.trim() === "" ||
-          formData.nomor.trim() === "" ||
-          formData.jalur.trim() === ""
+          handleData.nama.trim() === "" ||
+          handleData.nomor.trim() === "" ||
+          handleData.jalur.trim() === ""
         )
           return;
       }
@@ -52,29 +61,42 @@ const ContentReg = ({user}) => {
     };
   
     const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData((dataPrev) => ({
-        ...dataPrev,
-        [name]: value,
-      }));
+      const { name, value, files } = e.target;
+      if(name !== "bayar_formulir"){
+        setHandleData((dataPrev) => ({
+          ...dataPrev,
+          [name]: value,
+        }));
+      }else{
+        if (!["image/png", "image/jpg", "image/jpeg"].includes(files[0].type))
+          return alert(
+            `File Foto harus berupa gambar dengan format PNG, JPG, atau JPEG`
+          );
+        setHandleData((dataPrev) => ({
+          ...dataPrev,
+          [name]: files[0],
+        }));
+        const previewUrl = URL.createObjectURL(files[0])
+        setUrl(previewUrl)
+      }
     };
     const handleSubmit = (event) => {
       const keyowrd1 = regInput.current.value;
       if (!keyowrd1) return;
       event.preventDefault();
       if (
-        formData.nama.trim() === "" ||
-        formData.nomor.trim() === "" ||
-        formData.jalur.trim() === ""
+        handleData.nama.trim() === "" ||
+        handleData.nomor.trim() === "" ||
+        handleData.jalur.trim() === ""
       )
         return;
       if (
-        formData.email.trim() === "" ||
-        formData.password.trim() === "" ||
-        formData.password2.trim() === ""
+        handleData.email.trim() === "" ||
+        handleData.password.trim() === "" ||
+        handleData.password2.trim() === ""
       )
         return;
-      if (formData.password.trim() !== formData.password2.trim()) {
+      if (handleData.password.trim() !== handleData.password2.trim()) {
         setDangerState("");
         setAlertState("c10");
         setTimeout(() => {
@@ -82,11 +104,11 @@ const ContentReg = ({user}) => {
           setAlertState("hidden");
         }, 2000);
       }
-      if (formData.password.trim() === formData.password2.trim()) {
+      if (handleData.password.trim() === handleData.password2.trim()) {
         setDangerState("c10");
         setAlertState("");
 
-        const { nama, email, nomor , jalur, password } = formData
+        const { nama, email, nomor , jalur, password } = handleData
         const data = { nama, email, nomor, jalur, password }
 
         const proses = async(data) => {
@@ -111,25 +133,63 @@ const ContentReg = ({user}) => {
     const handleDaftar = async(e) => {
       e.preventDefault()
       if (
-        formData.nama.trim() === "" ||
-        formData.nomor.trim() === "" ||
-        formData.jenjang.trim() === "" ||
-        formData.jalur.trim() === "" 
+        handleData.nama.trim() === "" ||
+        handleData.nomor.trim() === "" ||
+        handleData.jenjang.trim() === "" ||
+        handleData.jalur.trim() === "" ||
+        handleData.bayar_formulir === ""
       ) return alert("Data tidak boleh kosong")
 
-      const {nama,nomor,jenjang,jalur,email} = formData
-      const data = {nama,nomor,jenjang,jalur,email}
+      const formData = new FormData();
+      formData.append("nama", handleData.nama)
+      formData.append("email", handleData.email)
+      formData.append("nomor", handleData.nomor)
+      formData.append("jenjang", handleData.jenjang)
+      formData.append("jalur", handleData.jalur)
 
+      if (
+        !["image/jpg", "image/jpeg", "image/png"].includes(handleData.bayar_formulir.type)
+      ) {
+        alert(
+          `File ${key} harus berupa gambar dengan format PNG, JPG, atau JPEG`
+        );
+        return;
+      }
+
+      if (handleData.bayar_formulir.size > 1_000_000 && typeof handleData.bayar_formulir === "object") {
+        alert(`Ukuran File ${key} tidak boleh lebih dari 1MB`);
+        return;
+      }
+
+      formData.append("bukti_bayar_form", handleData.bayar_formulir);
+
+
+      // const {nama,nomor,jenjang,jalur,email} = handleData
+      // const data = {nama,nomor,jenjang,jalur,email}
+
+      // const response = await fetch(
+      //   "/api/v1/account/create", {
+      //     method: "POST",
+      //     body: JSON.stringify(data)
+      //   }
+      // )
       const response = await fetch(
         "/api/v1/account/create", {
           method: "POST",
-          body: JSON.stringify(data)
+          body: formData
         }
       )
-      const showIt = await response.json()
-      console.log("🚀 ~ handleDaftar ~ showIt:", showIt)
-      alert("Akun behasil terdaftar, silahkan isi formulir")
-      route.push("/Users/dashboard2/forms/student");
+      if(response.ok){
+        
+        // console.log("🚀 ~ handleDaftar ~ showIt:", showIt)
+        alert("Akun behasil terdaftar, silahkan isi formulir")
+        route.push("/Users/dashboard2/forms/student");
+      }else{
+        alert("Ada yang salah nih, silahkan isi formulir lagi")
+
+      }
+      
+      // const showIt = await response.json()
     }
 
     return (
@@ -247,7 +307,7 @@ const ContentReg = ({user}) => {
                         </span>
                       </label>
                       <input
-                        value={formData.nama}
+                        value={handleData.nama}
                         onChange={handleChange}
                         ref={regInput}
                         type="text"
@@ -264,7 +324,7 @@ const ContentReg = ({user}) => {
                         </span>
                       </label>
                       <input
-                        value={formData.nomor}
+                        value={handleData.nomor}
                         onChange={handleChange}
                         ref={regInput}
                         type="number"
@@ -274,6 +334,7 @@ const ContentReg = ({user}) => {
                         name="nomor"
                       />
                     </div>
+                    <div className="flex gap-2 w-full">
                     <div className="form-control">
                       <label className="label ">
                         <span className="label-text text-color-dark font-semibold">
@@ -281,7 +342,7 @@ const ContentReg = ({user}) => {
                         </span>
                       </label>
                       <select
-                        value={formData.jenjang}
+                        value={handleData.jenjang}
                         onChange={handleChange}
                         name="jenjang"
                         ref={regInput}
@@ -291,8 +352,8 @@ const ContentReg = ({user}) => {
                         <option value="" disabled>
                           pilih jenjang pendidikan
                         </option>
-                        <option value="SMPIT">Sekolah Menengah Pertama Islam Terpadu</option>
-                        <option value="SMAIT">Sekolah Menengah Atas Islam Terpadu</option>
+                        <option value="SMPIT">SMPIT</option>
+                        <option value="SMAIT">SMAIT</option>
                       </select>
                     </div>
                     <div className="form-control">
@@ -302,7 +363,7 @@ const ContentReg = ({user}) => {
                         </span>
                       </label>
                       <select
-                        value={formData.jalur}
+                        value={handleData.jalur}
                         onChange={handleChange}
                         name="jalur"
                         ref={regInput}
@@ -312,10 +373,42 @@ const ContentReg = ({user}) => {
                         <option value="" disabled>
                           pilih jalur
                         </option>
-                        <option value="Normal">Normal</option>
-                        <option value="Beasiswa_Yatim">Beasiswa Yatim Dhuafa</option>
+                        <option value="Normal">Reguler</option>
+                        <option value="Beasiswa_Yatim">Yatim Dhuafa</option>
                       </select>
                     </div>
+                    </div>
+                    <div className="w-full">
+                      <div className="label-text text-color-dark font-semibold w-full text-base flex justify-between">
+                        <p>
+                        Bukti Bayar Formulir
+                        </p>
+                        <p className=" text-end font-normal">
+                          Rp 100.000
+                        </p>
+                      </div>
+                      <input
+                        onChange={handleChange}
+                        type="file"
+                        name="bayar_formulir"
+                        className={
+                          url
+                            ? "file-input file-input-bordered file:border-success file-input-success file:text-success file:bg-opacity-15 text-color-dark bg-color-primary file:rounded-md  w-full mt-2 text-md"
+                            : "file-input file-input-bordered text-color-dark bg-color-primary border-color-placeholder ring-color-placeholder focus:outline-color-placeholder w-full mt-2 text-md"
+                        }
+                      />
+                      {url && (
+                        <div className="w-full flex justify-end">
+                          <div
+                            onClick={() => handleSee(url)}
+                            className="mt-2 btn btn-xs btn-success bg-opacity-15 hover:bg-opacity-40 text-success"
+                          >
+                            lihat
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <Outer onClose={onCLose} url={url} isVisible={isOpen} />
                   </>
                 ) : null}
   
@@ -328,7 +421,7 @@ const ContentReg = ({user}) => {
                         </span>
                       </label>
                       <input
-                        value={formData.email}
+                        value={handleData.email}
                         onChange={handleChange}
                         ref={regInput}
                         disabled
@@ -346,7 +439,7 @@ const ContentReg = ({user}) => {
                         </span>
                       </label>
                       <input
-                        value={formData.password}
+                        value={handleData.password}
                         onChange={handleChange}
                         ref={regInput}
                         type="password"
@@ -363,7 +456,7 @@ const ContentReg = ({user}) => {
                         </span>
                       </label>
                       <input
-                        value={formData.password2}
+                        value={handleData.password2}
                         onChange={handleChange}
                         ref={regInput}
                         type="password"

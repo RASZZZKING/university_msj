@@ -6,12 +6,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const Navbar = ({ user, hasReg }) => {
+  const isAdmin = process.env.NEXT_PUBLIC_ADMIN === user?.user?.email
   const sessionUser = user
     ? { title: "Logout", login: "/api/auth/signout" }
     : { title: "Login", login: "/Login" };
   hasReg =
     hasReg && user
-      ? { title: "Dashboard", login: "/Users/dashboard2/forms/student" }
+      ? { title: "Dashboard", login: isAdmin ? "/Admin/dashboard2/forms/student" :"/Users/dashboard2/forms/student" }
       : user
       ? { title: "Daftar", login: "/Register" }
       : { title: "Sign in", login: "/Register" };

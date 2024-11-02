@@ -34,6 +34,10 @@ const ContentDashFiles = ({ data, isFill, dFull }) => {
 
   const handleChange = (e) => {
     const { name, files } = e.target;
+    if (!["image/png", "image/jpg", "image/jpeg"].includes(files[0].type))
+      return alert(
+        `File Foto harus berupa gambar dengan format PNG, JPG, atau JPEG`
+      );
     setFilesData((prevState) => ({
       ...prevState,
       [name]: files[0], // Set file ke state

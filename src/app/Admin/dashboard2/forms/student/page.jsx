@@ -4,9 +4,14 @@ import prisma from "@/models/libs/prisma";
 import React from "react";
 import TableSt from "./TableSt";
 import authUserSession from "@/models/libs/auth-libs";
+import { redirect } from "next/navigation";
 
 const Page = async () => {
     const siUser = await authUserSession()
+    if(siUser?.user?.email !== process.env.NEXT_PUBLIC_ADMIN){
+      return redirect("/")
+    }
+
 
   const datax = await prisma.account.findMany();
 

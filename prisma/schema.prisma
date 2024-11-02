@@ -13,8 +13,9 @@ model account {
   nama     String
   email    String @unique
   nomor    String
-  jenjang String
+  jenjang  String
   jalur    String
+  bukti_bayar_form String
 }
 
 model calon_mahasiswa {

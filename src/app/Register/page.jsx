@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 
 const Page = async() => {
   const user = await authUserSession()
+  console.log("🚀 ~ Page ~ user:", user)
   const data = await prisma.account.findFirst({
     where: { email: user?.user?.email }
   })

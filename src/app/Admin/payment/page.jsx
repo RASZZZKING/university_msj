@@ -4,9 +4,13 @@ import prisma from "@/models/libs/prisma";
 import React from "react";
 import TabelPayment from "./TabelPayment";
 import authUserSession from "@/models/libs/auth-libs";
+import { redirect } from "next/navigation";
 
 const Page = async () => {
     const siUser = await authUserSession()
+    if(siUser?.user?.email !== process.env.NEXT_PUBLIC_ADMIN){
+      return redirect("/")
+    }
 
   const datax = await prisma.account.findMany();
 

@@ -72,7 +72,7 @@ const ImageSlider = ({ images }) => {
               Assalamualaikum, yuk kesini
             </h1>
             <p className="md:py-6 py-2  textBerubah drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8) text-color-primary">
-              Eksprollerasi dan kembangkan bakatmu disini, Bersama kita dengan
+              Eksplore dan kembangkan bakatmu disini, Bersama kita dengan
               mengaji, meraih prestasi akademis, dan pastinya bisa tahfiz.
             </p>
             <button className="btn ubahBtn z-20 bg-color-primary text-color-dark hover:text-color-primary hover:btn-ghost">

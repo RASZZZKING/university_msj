@@ -26,7 +26,7 @@ const NavbarSamping = ({ user }) => {
   const isStudent = trimPath[4] === "student"
 
 
-  const isAdmin = process.env.ADMIN === user;
+  const isAdmin = process.env.NEXT_PUBLIC_ADMIN === user;
   console.log("🚀 ~ NavbarSamping ~ isAdmin:", isAdmin)
 
   const dataIcon = [
