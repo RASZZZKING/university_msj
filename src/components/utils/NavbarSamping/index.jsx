@@ -6,6 +6,7 @@ import {
   MapPinArea,
   Megaphone,
   Student,
+  User,
   UserList,
   Users,
 } from "@phosphor-icons/react";
@@ -34,6 +35,11 @@ const NavbarSamping = ({ user }) => {
       href: "/",
       name: "Beranda",
       icon: <House size={26} weight={path === "/" ? "fill" : "regular"} />,
+    },
+    {
+      href: "/Admin/dashboard2/user",
+      name: "Akun",
+      icon: <User size={26} weight={path === "/Admin/dashboard2/user" ? "fill" : "regular"} />,
     },
     {
       href: isAdmin ? "/Admin/payment" : "/Users/payment",
@@ -141,6 +147,8 @@ const NavbarSamping = ({ user }) => {
       </div>
       <div className="flex flex-col">
         {dataIcon.map((cb, index) => {
+          if(!isAdmin && cb.name === "Akun") return
+
           if (cb.name !== "Formulir") {
             return (
               <Link

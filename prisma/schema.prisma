@@ -16,6 +16,7 @@ model account {
   jenjang  String
   jalur    String
   bukti_bayar_form String
+  status      String
 }
 
 model calon_mahasiswa {

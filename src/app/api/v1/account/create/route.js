@@ -11,6 +11,7 @@ export async function POST(request) {
   const nomor = fmxData.get("nomor");
   const jalur = fmxData.get("jalur");
   const bukti_bayar_formz = fmxData.get("bukti_bayar_form");
+  const status = "Pending"
   let bukti_bayar_form = null;
 
   if (bukti_bayar_formz) {
@@ -43,7 +44,7 @@ export async function POST(request) {
   }
 
   // const { nama, email, nomor, jenjang ,jalur } = await request.json()
-  const data = { nama, email, nomor, jenjang, jalur, bukti_bayar_form };
+  const data = { nama, email, nomor, jenjang, jalur, bukti_bayar_form, status };
 
   const createAccount = await prisma.account.create({ data });
 
